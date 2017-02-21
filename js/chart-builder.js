@@ -92,22 +92,20 @@ var ACBuilder = (function() {
     });
 
     //console.log("data: ", /*data,*/ dimIndexes);
-
-    if (true || !chart || chartType != chartConstructor) {
+    if (true || !chart || chartType != chartConstructor) { // Now always create new chart
       if (chart && typeof chart['dispose'] == 'function') {
         anychart.utils.hideTooltips();
         chart['dispose']();
       }
 
       // Create chart instance
-      //console.log("create new chart!");
       chart = anychart[chartConstructor]();
 
       // Events
-      var pointClicked = false;
-
       chart.interactivity().selectionMode('none');
-      chart.listen("mouseDown", function(evt) {
+
+      var pointClicked = false;
+      chart.listen("mouseDown", function() {
         if (!pointClicked) {
           chart.dispatchEvent("pointMouseDown");
         }
@@ -117,6 +115,7 @@ var ACBuilder = (function() {
       chart.listen("pointMouseDown", function(evt) {
         if (evt.pointIndex != undefined) {
           pointClicked = true;
+
           view.selectValues(0, [dimIndexes[evt.pointIndex]], true);
 
           var index = selectedIndexes.indexOf(evt.pointIndex);
@@ -127,18 +126,27 @@ var ACBuilder = (function() {
           }
         }
 
-        if (isSeriesBased) {
+        if (isSeriesBased)
           updateSelections();
-        }
       });
 
       view.clearSelectedValues = function() {
         selectedIndexes = [];
-        if (isSeriesBased) {
+        if (isSeriesBased)
           updateSelections();
+        else {
+          switch (chartConstructor) {
+              // Now we have only Pie
+            case 'pie':
+              chart.explodeSlices(false);
+              break;
+            default:
+              break;
+          }
         }
       };
-      //console.log("=====  anychart." + chartConstructor + "()");
+
+      chart.contextMenu(false);
     }
 
     // Applying panel chart settings
