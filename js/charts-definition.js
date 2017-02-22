@@ -279,6 +279,10 @@ var getSeriesTypeOptions = function(chartTypeId) {
     case chartTypes.BAR_CHART:
       options = [
         {
+          value: null,
+          label: "-- default --"
+        },
+        {
           value: "line",
           label: "Line"
         }, {
@@ -316,6 +320,10 @@ var getSeriesTypeOptions = function(chartTypeId) {
       break;
     case chartTypes.SCATTER_CHART:
       options = [
+        {
+          value: null,
+          label: "-- default --"
+        },
         {
           value: "marker",
           label: "Marker"

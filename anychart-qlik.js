@@ -48,26 +48,26 @@ define([
                     .attr({"class": "incomplete"}).css({"width": "100%", "height": "100%"}));
           }
 
-          var extOrigin = document.location.origin + '/extensions/anychart-qlik';
           var dimCount = layout.qHyperCube.qDimensionInfo.length;
           var measureCount = layout.qHyperCube.qMeasureInfo.length;
-          var typePreset = getChartTypePreset(layout.opt.chartType);
-          var subtypePreset = getSubtypePreset(typePreset, layout.opt.chartSubtype);
 
-          // Set up default subtype
-          if (!subtypePreset) {
-            subtypePreset = getSubtypePreset(typePreset, typePreset.defaultSubtype);
-            if(subtypePreset) {
-              view.backendApi.getProperties().then(function(reply) {
-                reply.opt.chartSubtype = typePreset.defaultSubtype;
-                view.backendApi.setProperties(reply);
-              });
-              // redraw after promise
-              return;
+          if (dimCount > 0 && measureCount > 0)
+            chart = ACBuilder.buildChart(view, layout);
+
+          if (chart) {
+            $element.find(".incomplete").hide();
+            $element.find(".chart-container").show();
+
+            if (!chart.container()) {
+              chart.container(containerId);
             }
-          }
+            chart.draw();
 
-          if (!subtypePreset || dimCount == 0 || measureCount == 0) {
+          } else if(dimCount == 0 && measureCount == 0) {
+            // Incomplete visualization
+            var extOrigin = document.location.origin + '/extensions/anychart-qlik';
+            var typePreset = getChartTypePreset(layout.opt.chartType);
+            var subtypePreset = getSubtypePreset(typePreset, layout.opt.chartSubtype);
 
             $element.find(".incomplete").show();
             $element.find(".chart-container").hide();
@@ -94,17 +94,6 @@ define([
             html += '</table><br>Complete data and options selection to finalize visualization.</p></div>';
 
             $element.find(".incomplete").html(html);
-
-          } else {
-            $element.find(".incomplete").hide();
-            $element.find(".chart-container").show();
-
-            chart = ACBuilder.buildChart(view, layout, typePreset, subtypePreset);
-
-            if (!chart.container()) {
-              chart.container(containerId);
-            }
-            chart.draw();
           }
 
           return qlik.Promise.resolve();

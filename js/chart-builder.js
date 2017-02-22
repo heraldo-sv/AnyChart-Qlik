@@ -60,6 +60,62 @@ var ACBuilder = (function() {
     return opt_dryRun ? success : target;
   };
 
+  var checkProperties = function(view, layout){
+    var consistency = true;
+    var subtype = null;
+    var seriesTypes = [];
+    var i, key, value;
+
+    /******** Check subtypePreset ***/
+    var typePreset = getChartTypePreset(layout.opt.chartType);
+    var subtypePreset = getSubtypePreset(typePreset, layout.opt.chartSubtype);
+
+    // Set up default subtype
+    if (!subtypePreset) {
+      subtypePreset = getSubtypePreset(typePreset, typePreset.defaultSubtype);
+      if(subtypePreset) {
+        consistency = false;
+        subtype = typePreset.defaultSubtype;
+      }
+    }
+
+    /******** Check series types ***/
+    if (typePreset.isSeriesBased) {
+      var hc = layout.qHyperCube;
+      for (i = 0; i < hc.qMeasureInfo.length; i++) {
+        var settings = hc.qMeasureInfo[i].series;
+        for (key in settings) {
+          value = settings[key];
+
+          if(key == "seriesTypeCALL" && value) {
+            var typeOptions = getSeriesTypeOptions(layout.opt.chartType);
+            if(typeOptions.filter(function(d) {return d.value === value}).length == 0) {
+              consistency = false;
+              // Remember series index to reset it's type
+              seriesTypes.push(i);
+            }
+          }
+        }
+      }
+    }
+
+    if(!consistency) {
+      view.backendApi.getProperties().then(function(reply) {
+        reply.opt.chartSubtype = subtype ? subtype : reply.opt.chartSubtype;
+        if(seriesTypes.length) {
+          for(i in reply.qHyperCubeDef.qMeasures) {
+            if(seriesTypes.indexOf(Number(i)) != -1) {
+              reply.qHyperCubeDef.qMeasures[i].qDef.series.seriesTypeCALL = null;
+            }
+          }
+        }
+        view.backendApi.setProperties(reply);
+      });
+    }
+
+    return consistency;
+  };
+
   var updateSelections = function() {
     for (var s = 0; s < chart.getSeriesCount(); s++) {
       chart.getSeriesAt(s).select(selectedIndexes);
@@ -69,8 +125,13 @@ var ACBuilder = (function() {
   var chart;
   var selectedIndexes = [];
 
-  this.buildChart = function(view, layout, typePreset, subtypePreset) {
-    var i;
+  this.buildChart = function(view, layout) {
+
+    if(!checkProperties(view, layout))
+      return null;
+
+    var typePreset = getChartTypePreset(layout.opt.chartType);
+    var subtypePreset = getSubtypePreset(typePreset, layout.opt.chartSubtype);
     var chartConstructor = subtypePreset.ctor || typePreset.ctor;
     var isSeriesBased = typePreset.isSeriesBased;
     var defaultSeriesType = isSeriesBased ? subtypePreset.seriesType : null;
@@ -146,6 +207,7 @@ var ACBuilder = (function() {
         }
       };
 
+      // Hide anychart's context menu
       chart.contextMenu(false);
     }
 
@@ -179,6 +241,7 @@ var ACBuilder = (function() {
       // Create series and apply panel series settings
       chart.removeAllSeries();
 
+      var i;
       for (i = 0; i < hc.qMeasureInfo.length; i++) {
         // Create series
         var seriesData;
@@ -195,12 +258,18 @@ var ACBuilder = (function() {
         var series = chart[defaultSeriesType](seriesData);
         series.name(hc.qMeasureInfo[i]['qFallbackTitle']);
 
+        //console.log("Series" + i + ":", defaultSeriesType);
+
         var seriesPanelSettings = hc.qMeasureInfo[i].series;
         seriesPanelSettings = concatObjects(seriesPanelSettings, layout.opt.vary.series, layout.opt.vary.both);
 
         //console.log("Series settings", seriesPanelSettings);
         for (key in seriesPanelSettings) {
           value = seriesPanelSettings[key];
+
+          if(key == "seriesTypeCALL" && !value) {
+            continue;
+          }
           getset(series, key, value);
         }
       }

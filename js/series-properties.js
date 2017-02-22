@@ -6,7 +6,7 @@ define([], function() {
     component: "dropdown",
     label: "Type",
     ref: "qDef.series.seriesTypeCALL",
-    //defaultValue: "default",
+    defaultValue: null,
     options: function(l, g){
       return getSeriesTypeOptions(g.layout.opt.chartType);
     },
