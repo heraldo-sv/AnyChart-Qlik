@@ -3,13 +3,13 @@ define(['./series-properties', './chart-properties'
 
   var dimensions = {
     uses: "dimensions",
-    min: 0,
+    min: 1,
     max: 1
   };
 
   var measures = {
     uses: "measures",
-    min: 0,
+    min: 1,
     max: 6,
     items: seriesProperties
   };

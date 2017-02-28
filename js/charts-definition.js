@@ -23,36 +23,36 @@ var chartSubtypes = {
   "PERCENT_STACKED_AREA_CHART": 10,
   "PERCENT_STACKED_SPLINE_AREA_CHART": 11,
   "PERCENT_STACKED_STEP_LINE_AREA_CHART": 12,
-  "3D_AREA_CHART": 13,
-  "STACKED_3D_AREA_CHART": 14,
-  "PERCENT_STACKED_3D_AREA_CHART": 15,
+  // "3D_AREA_CHART": 13,
+  // "STACKED_3D_AREA_CHART": 14,
+  // "PERCENT_STACKED_3D_AREA_CHART": 15,
 
   // Column chart
   "COLUMN_CHART": 16,
   "STACKED_COLUMN_CHART": 17,
   "PERCENT_STACKED_COLUMN_CHART": 18,
-  "3D_COLUMN_CHART": 19,
-  "STACKED_3D_COLUMN_CHART": 20,
-  "PERCENT_STACKED_3D_COLUMN_CHART": 21,
+  // "3D_COLUMN_CHART": 19,
+  // "STACKED_3D_COLUMN_CHART": 20,
+  // "PERCENT_STACKED_3D_COLUMN_CHART": 21,
 
   // Bar chart
   "BAR_CHART": 22,
   "STACKED_BAR_CHART": 23,
   "PERCENT_STACKED_BAR_CHART": 24,
-  "3D_BAR_CHART": 25,
-  "STACKED_3D_BAR_CHART": 26,
-  "PERCENT_STACKED_3D_BAR_CHART": 27,
+  // "3D_BAR_CHART": 25,
+  // "STACKED_3D_BAR_CHART": 26,
+  // "PERCENT_STACKED_3D_BAR_CHART": 27,
 
   // Scatter chart
   "MARKER_SCATTER_CHART": 28,
-  "BUBBLE_SCATTER_CHART": 29,
+  // "BUBBLE_SCATTER_CHART": 29,
   "LINE_SCATTER_CHART": 30,
 
   // Pie/Donut chart
   "PIE_CHART": 31,
   "DONUT_CHART": 32,
-  "3D_PIE_CHART": 33,
-  "3D_DONUT_CHART": 34
+  // "3D_PIE_CHART": 33,
+  // "3D_DONUT_CHART": 34
 };
 
 var chartPresets = [
@@ -113,7 +113,7 @@ var chartPresets = [
       {
         value: chartSubtypes.PERCENT_STACKED_STEP_LINE_AREA_CHART, label: "Percent Stacked Step-line Area Chart",
         seriesType: "stepArea", settings: {"yScale().stackMode()": "percent"}
-      },
+      }/*,
       {
         value: chartSubtypes["3D_AREA_CHART"], label: "3D Area Chart",
         ctor: "area3d", seriesType: "area", settings: {"yScale().stackMode()": false}
@@ -125,7 +125,7 @@ var chartPresets = [
       {
         value: chartSubtypes.PERCENT_STACKED_3D_AREA_CHART, label: "Percent Stacked 3D Area Chart",
         ctor: "area3d", seriesType: "area", settings: {"yScale().stackMode()": "percent"}
-      }
+      }*/
     ],
 
     min_dims: 1,
@@ -149,7 +149,7 @@ var chartPresets = [
       {
         value: chartSubtypes.PERCENT_STACKED_COLUMN_CHART, label: "Percent Stacked Column Chart",
         seriesType: "column", settings: {"yScale().stackMode()": "percent"}
-      },
+      }/*,
       {
         value: chartSubtypes["3D_COLUMN_CHART"], label: "3D Column Chart",
         ctor: "column3d", seriesType: "column", settings: {"yScale().stackMode()": false}
@@ -161,7 +161,7 @@ var chartPresets = [
       {
         value: chartSubtypes.PERCENT_STACKED_3D_COLUMN_CHART, label: "Percent Stacked 3D Column Chart",
         ctor: "column3d", seriesType: "column", settings: {"yScale().stackMode()": "percent"}
-      }
+      }*/
     ],
 
     min_dims: 1,
@@ -185,7 +185,7 @@ var chartPresets = [
       {
         value: chartSubtypes.PERCENT_STACKED_BAR_CHART, label: "Percent Stacked Bar Chart",
         seriesType: "bar", settings: {"yScale().stackMode()": "percent"}
-      },
+      }/*,
       // 3D
       {
         value: chartSubtypes["3D_BAR_CHART"], label: "3D Bar Chart",
@@ -198,7 +198,7 @@ var chartPresets = [
       {
         value: chartSubtypes.PERCENT_STACKED_3D_BAR_CHART, label: "Percent Stacked 3D Bar Chart",
         ctor: "bar3d", seriesType: "bar", settings: {"yScale().stackMode()": "percent"}
-      }
+      }*/
     ],
 
     min_dims: 1,
@@ -212,7 +212,7 @@ var chartPresets = [
     defaultSubtype: chartSubtypes.MARKER_SCATTER_CHART,
     subtypes: [
       {value: chartSubtypes.MARKER_SCATTER_CHART, label: "Marker Chart", seriesType: "marker"},
-      {value: chartSubtypes.BUBBLE_SCATTER_CHART, label: "Bubble Chart", seriesType: "bubble"},
+      //{value: chartSubtypes.BUBBLE_SCATTER_CHART, label: "Bubble Chart", seriesType: "bubble"},
       {value: chartSubtypes.LINE_SCATTER_CHART, label: "Line Chart", seriesType: "line"}
     ],
 
@@ -227,14 +227,15 @@ var chartPresets = [
     defaultSubtype: chartSubtypes.PIE_CHART,
     subtypes: [
       {value: chartSubtypes.PIE_CHART, label: "Pie Chart", settings: {"innerRadius()": false}},
-      {value: chartSubtypes.DONUT_CHART, label: "Donut Chart", settings: {"innerRadius()": "50%"}},
+      {value: chartSubtypes.DONUT_CHART, label: "Donut Chart", settings: {"innerRadius()": "50%"}}
+      /*,
       {value: chartSubtypes["3D_PIE_CHART"], label: "3D Pie Chart", ctor: "pie3d", settings: {"innerRadius()": false}},
       {
         value: chartSubtypes["3D_DONUT_CHART"],
         label: "3D Donut Chart",
         ctor: "pie3d",
         settings: {"innerRadius()": "50%"}
-      }
+      }*/
     ],
 
     min_dims: 1,
@@ -327,10 +328,10 @@ var getSeriesTypeOptions = function(chartTypeId) {
         {
           value: "marker",
           label: "Marker"
-        }, {
+        },/* {
           value: "bubble",
           label: "Bubble"
-        },
+        },*/
         {
           value: "line",
           label: "Line"

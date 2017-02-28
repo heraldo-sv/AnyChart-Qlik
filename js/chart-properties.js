@@ -109,39 +109,39 @@ define(["./charts-definition"], function() {
     }
   };
 
-  var dataLabels = {
-    label: "Data Labels",
-    type: "items",
-    items: {
-      chartLabels: {
-        ref: "opt.vary.chart.labelsCALL",
-        type: "boolean",
-        label: "Labels chart",
-        defaultValue: true,
-        show: function(d) {
-          return !getChartTypePreset(d.opt.chartType)['isSeriesBased'];
-        }
-      },
-      seriesLabels: {
-        ref: "opt.vary.series.labelsCALL",
-        type: "boolean",
-        label: "Labels series",
-        defaultValue: false,
-        show: function(d) {
-          return getChartTypePreset(d.opt.chartType)['isSeriesBased'];
-        }
-      },
-      labelsFormatter: {
-        ref: "opt.vary.both.labelsCALL_textFormatterCALL",
-        type: "string",
-        defaultValue: "{%Value}{decimalsCount:2}",
-        //defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%",
-        show: function(d) {
-          return d.opt.vary.chart && d.opt.vary.chart.labelsCALL || d.opt.vary.series && d.opt.vary.series.labelsCALL;
-        }
-      }
-    }
-  };
+  // var dataLabels = {
+  //   label: "Data Labels",
+  //   type: "items",
+  //   items: {
+  //     chartLabels: {
+  //       ref: "opt.vary.chart.labelsCALL",
+  //       type: "boolean",
+  //       label: "Labels chart",
+  //       defaultValue: true,
+  //       show: function(d) {
+  //         return !getChartTypePreset(d.opt.chartType)['isSeriesBased'];
+  //       }
+  //     },
+  //     seriesLabels: {
+  //       ref: "opt.vary.series.labelsCALL",
+  //       type: "boolean",
+  //       label: "Labels series",
+  //       defaultValue: false,
+  //       show: function(d) {
+  //         return getChartTypePreset(d.opt.chartType)['isSeriesBased'];
+  //       }
+  //     },
+  //     labelsFormatter: {
+  //       ref: "opt.vary.both.labelsCALL_textFormatterCALL",
+  //       type: "string",
+  //       defaultValue: "{%Value}{decimalsCount:2}",
+  //       //defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%",
+  //       show: function(d) {
+  //         return d.opt.vary.chart && d.opt.vary.chart.labelsCALL || d.opt.vary.series && d.opt.vary.series.labelsCALL;
+  //       }
+  //     }
+  //   }
+  // };
 
   var xAxis = {
     label: "X-Axis",
@@ -301,7 +301,7 @@ define(["./charts-definition"], function() {
     items: {
       typeAndSubtype: typeAndSubtype,
       legend: legend,
-      dataLabels: dataLabels,
+      //dataLabels: dataLabels,
       xAxis: xAxis,
       yAxis: yAxis
     }

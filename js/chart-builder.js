@@ -143,14 +143,16 @@ var ACBuilder = (function() {
 
     // Prepare data
     var matrix = hc.qDataPages[0].qMatrix;
-    //console.log(matrix);
 
     var data = matrix.map(function(d1) {
       dimIndexes.push(d1[0]['qElemNumber']);
       return d1.map(function(d2) {
-        return Number(d2['qNum']) || (!isNaN(d2['qText']) ? Number(d2['qText']) : d2['qText']);
+        return Number(d2['qNum']) || (!isNaN(Number(d2['qText'])) ? Number(d2['qText']) : d2['qText']);
       });
     });
+
+    // console.log(matrix[0][1]);
+    // console.log(data[0]);
 
     //console.log("data: ", /*data,*/ dimIndexes);
     if (true || !chart || chartType != chartConstructor) { // Now always create new chart
@@ -216,7 +218,7 @@ var ACBuilder = (function() {
     var value;
     var chartPanelSettings = layout.opt.chart;
     if (!isSeriesBased) {
-      chartPanelSettings = concatObjects(chartPanelSettings, layout.opt.vary.chart, layout.opt.vary.both);
+      //chartPanelSettings = concatObjects(chartPanelSettings, layout.opt.vary.chart, layout.opt.vary.both);
     }
     //console.log("Chart settings", chartPanelSettings);
     for (key in chartPanelSettings) {
@@ -237,6 +239,7 @@ var ACBuilder = (function() {
     // Create data.set from prepared data
     var dataSet = anychart.data.set(data);
 
+    // console.log(hc.qMeasureInfo[0]);
     if (isSeriesBased) {
       // Create series and apply panel series settings
       chart.removeAllSeries();
@@ -261,7 +264,7 @@ var ACBuilder = (function() {
         //console.log("Series" + i + ":", defaultSeriesType);
 
         var seriesPanelSettings = hc.qMeasureInfo[i].series;
-        seriesPanelSettings = concatObjects(seriesPanelSettings, layout.opt.vary.series, layout.opt.vary.both);
+        //seriesPanelSettings = concatObjects(seriesPanelSettings, layout.opt.vary.series, layout.opt.vary.both);
 
         //console.log("Series settings", seriesPanelSettings);
         for (key in seriesPanelSettings) {
