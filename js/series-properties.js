@@ -2,6 +2,9 @@ define([], function() {
   'use strict';
 
   return {
+    numberFormatting: {
+      show: false
+    },
     seriesStandard: {
       type: "items",
       label: "Series settings",
@@ -29,19 +32,31 @@ define([], function() {
           }
         },
         seriesLabels: {
-          ref: "qDef.series.labelsCALL",
+          ref: "qDef.vary.series.labelsCALL",
           type: "boolean",
           label: "Show labels",
-          defaultValue: false
+          defaultValue: false,
+          show: function(l, g) {
+            return getChartTypePreset(g.layout.opt.chartType)['isSeriesBased'];
+          }
+        },
+        chartLabels: {
+          ref: "qDef.vary.chart.labelsCALL",
+          type: "boolean",
+          label: "Show labels",
+          defaultValue: true,
+          show: function(l, g) {
+            return !getChartTypePreset(g.layout.opt.chartType)['isSeriesBased'];
+          }
         },
         labelsFormatter: {
-          ref: "qDef.series.labelsCALL_textFormatterCALL",
+          ref: "qDef.vary.both.labelsCALL_textFormatterCALL",
           type: "string",
           label: "Labels formatter",
-          defaultValue: "{%Value}{decimalsCount:2} BLAH!",
-          //defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%",
+          defaultValue: "{%Value}{decimalsCount:2}",
+          //defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%", // for pie
           show: function(l) {
-            return l.qDef.series.labelsCALL;
+            return l.qDef.vary.chart && l.qDef.vary.chart.labelsCALL || l.qDef.vary.series && l.qDef.vary.series.labelsCALL;
           }
         }
       }

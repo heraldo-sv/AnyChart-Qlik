@@ -218,7 +218,8 @@ var ACBuilder = (function() {
     var value;
     var chartPanelSettings = layout.opt.chart;
     if (!isSeriesBased) {
-      //chartPanelSettings = concatObjects(chartPanelSettings, layout.opt.vary.chart, layout.opt.vary.both);
+      // Apply first series 'chart' and 'both' settings
+      chartPanelSettings = concatObjects(chartPanelSettings, hc.qMeasureInfo[0].vary.chart, hc.qMeasureInfo[0].vary.both);
     }
     //console.log("Chart settings", chartPanelSettings);
     for (key in chartPanelSettings) {
@@ -261,10 +262,8 @@ var ACBuilder = (function() {
         var series = chart[defaultSeriesType](seriesData);
         series.name(hc.qMeasureInfo[i]['qFallbackTitle']);
 
-        //console.log("Series" + i + ":", defaultSeriesType);
-
         var seriesPanelSettings = hc.qMeasureInfo[i].series;
-        //seriesPanelSettings = concatObjects(seriesPanelSettings, layout.opt.vary.series, layout.opt.vary.both);
+        seriesPanelSettings = concatObjects(seriesPanelSettings, hc.qMeasureInfo[i].vary.series, hc.qMeasureInfo[i].vary.both);
 
         //console.log("Series settings", seriesPanelSettings);
         for (key in seriesPanelSettings) {
