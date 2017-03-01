@@ -109,40 +109,6 @@ define(["./charts-definition"], function() {
     }
   };
 
-  // var dataLabels = {
-  //   label: "Data Labels",
-  //   type: "items",
-  //   items: {
-  //     chartLabels: {
-  //       ref: "opt.vary.chart.labelsCALL",
-  //       type: "boolean",
-  //       label: "Labels chart",
-  //       defaultValue: true,
-  //       show: function(d) {
-  //         return !getChartTypePreset(d.opt.chartType)['isSeriesBased'];
-  //       }
-  //     },
-  //     seriesLabels: {
-  //       ref: "opt.vary.series.labelsCALL",
-  //       type: "boolean",
-  //       label: "Labels series",
-  //       defaultValue: false,
-  //       show: function(d) {
-  //         return getChartTypePreset(d.opt.chartType)['isSeriesBased'];
-  //       }
-  //     },
-  //     labelsFormatter: {
-  //       ref: "opt.vary.both.labelsCALL_textFormatterCALL",
-  //       type: "string",
-  //       defaultValue: "{%Value}{decimalsCount:2}",
-  //       //defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%",
-  //       show: function(d) {
-  //         return d.opt.vary.chart && d.opt.vary.chart.labelsCALL || d.opt.vary.series && d.opt.vary.series.labelsCALL;
-  //       }
-  //     }
-  //   }
-  // };
-
   var xAxis = {
     label: "X-Axis",
     type: "items",
@@ -295,15 +261,82 @@ define(["./charts-definition"], function() {
     }
   };
 
+  var credits = {
+    label: "Credits",
+    type: "items",
+    items: {
+      licenseKey: {
+        ref: "opt.anychart.licenseKeyCALL",
+        label: "License key",
+        type: "string"
+      },
+      creditsShow: {
+        ref: "opt.chart.creditsCALL_enabledCALL",
+        label: "Credits",
+        type: "boolean",
+        defaultValue: true,
+        show: function(d) {
+          return d.opt.anychart.licenseKeyCALL;
+        }
+      },
+      creditsText: {
+        ref: "opt.chart.creditsCALL_textCALL",
+        label: "Text",
+        type: "string",
+        defaultValue: "AnyChart",
+        show: function(d) {
+          return d.opt.chart.creditsCALL_enabledCALL && d.opt.anychart.licenseKeyCALL;
+        }
+      },
+      creditsUrl: {
+        ref: "opt.chart.creditsCALL_urlCALL",
+        label: "Url",
+        type: "string",
+        defaultValue: "http://www.anychart.com",
+        show: function(d) {
+          return d.opt.chart.creditsCALL_enabledCALL && d.opt.anychart.licenseKeyCALL;
+        }
+      },
+      creditsLogo: {
+        ref: "opt.chart.creditsCALL_logoSrcCALL",
+        label: "Logo",
+        type: "string",
+        defaultValue: "https://static.anychart.com/logo.png",
+        show: function(d) {
+          return d.opt.chart.creditsCALL_enabledCALL && d.opt.anychart.licenseKeyCALL;
+        }
+      },
+      creditsAlt: {
+        ref: "opt.chart.creditsCALL_altCALL",
+        label: "Tooltip",
+        type: "string",
+        defaultValue: "AnyChart - JavaScript Charts designed to be embedded and integrated",
+        show: function(d) {
+          return d.opt.chart.creditsCALL_enabledCALL && d.opt.anychart.licenseKeyCALL;
+        }
+      },
+      creditsImgAlt: {
+        ref: "opt.chart.creditsCALL_altCALL",
+        label: "Image alt text",
+        type: "string",
+        defaultValue: "AnyChart - JavaScript Charts",
+        show: function(d) {
+          return d.opt.chart.creditsCALL_enabledCALL && d.opt.anychart.licenseKeyCALL;
+        }
+      }
+
+    }
+  };
+
   return {
     label: "Chart",
     component: "expandable-items",
     items: {
       typeAndSubtype: typeAndSubtype,
       legend: legend,
-      //dataLabels: dataLabels,
       xAxis: xAxis,
-      yAxis: yAxis
+      yAxis: yAxis,
+      credits: credits
     }
   };
 });

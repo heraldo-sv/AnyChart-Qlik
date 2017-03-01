@@ -60,7 +60,7 @@ var ACBuilder = (function() {
     return opt_dryRun ? success : target;
   };
 
-  var checkProperties = function(view, layout){
+  var checkProperties = function(view, layout) {
     var consistency = true;
     var subtype = null;
     var seriesTypes = [];
@@ -73,7 +73,7 @@ var ACBuilder = (function() {
     // Set up default subtype
     if (!subtypePreset) {
       subtypePreset = getSubtypePreset(typePreset, typePreset.defaultSubtype);
-      if(subtypePreset) {
+      if (subtypePreset) {
         consistency = false;
         subtype = typePreset.defaultSubtype;
       }
@@ -87,9 +87,11 @@ var ACBuilder = (function() {
         for (key in settings) {
           value = settings[key];
 
-          if(key == "seriesTypeCALL" && value) {
+          if (key == "seriesTypeCALL" && value) {
             var typeOptions = getSeriesTypeOptions(layout.opt.chartType);
-            if(typeOptions.filter(function(d) {return d.value === value}).length == 0) {
+            if (typeOptions.filter(function(d) {
+                  return d.value === value
+                }).length == 0) {
               consistency = false;
               // Remember series index to reset it's type
               seriesTypes.push(i);
@@ -99,12 +101,12 @@ var ACBuilder = (function() {
       }
     }
 
-    if(!consistency) {
+    if (!consistency) {
       view.backendApi.getProperties().then(function(reply) {
         reply.opt.chartSubtype = subtype ? subtype : reply.opt.chartSubtype;
-        if(seriesTypes.length) {
-          for(i in reply.qHyperCubeDef.qMeasures) {
-            if(seriesTypes.indexOf(Number(i)) != -1) {
+        if (seriesTypes.length) {
+          for (i in reply.qHyperCubeDef.qMeasures) {
+            if (seriesTypes.indexOf(Number(i)) != -1) {
               reply.qHyperCubeDef.qMeasures[i].qDef.series.seriesTypeCALL = null;
             }
           }
@@ -127,7 +129,7 @@ var ACBuilder = (function() {
 
   this.buildChart = function(view, layout) {
 
-    if(!checkProperties(view, layout))
+    if (!checkProperties(view, layout))
       return null;
 
     var typePreset = getChartTypePreset(layout.opt.chartType);
@@ -213,10 +215,20 @@ var ACBuilder = (function() {
       chart.contextMenu(false);
     }
 
-    // Applying panel chart settings
     var key;
     var value;
+    var anychartPanelSettings = layout.opt.anychart;
     var chartPanelSettings = layout.opt.chart;
+
+    // Applying panel chart settings
+    //console.log("Anychart settings", anychartPanelSettings);
+    for (key in anychartPanelSettings) {
+      value = anychartPanelSettings[key];
+      if (value)
+        getset(anychart, key, value);
+    }
+
+    // Applying panel chart settings
     if (!isSeriesBased) {
       // Apply first series 'chart' and 'both' settings
       chartPanelSettings = concatObjects(chartPanelSettings, hc.qMeasureInfo[0].vary.chart, hc.qMeasureInfo[0].vary.both);
@@ -269,7 +281,7 @@ var ACBuilder = (function() {
         for (key in seriesPanelSettings) {
           value = seriesPanelSettings[key];
 
-          if(key == "seriesTypeCALL" && !value) {
+          if (key == "seriesTypeCALL" && !value) {
             continue;
           }
           getset(series, key, value);
