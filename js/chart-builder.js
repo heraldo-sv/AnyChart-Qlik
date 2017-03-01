@@ -307,7 +307,7 @@ var ACBuilder = (function() {
     }
 
     // debug
-    window['chart'] = chart;
+    //window['chart'] = chart;
 
     return chart;
   };

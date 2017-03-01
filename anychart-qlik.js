@@ -32,7 +32,6 @@ define([
         },
 
         paint: function($element, layout) {
-          //console.log("any paint");
           var view = this;
           //var scope = angular.element($element).scope();
           var containerId = "container_" + layout.qInfo.qId;
