@@ -219,6 +219,7 @@ var ACBuilder = (function() {
     var value;
     var anychartPanelSettings = layout.opt.anychart;
     var chartPanelSettings = layout.opt.chart;
+    var piePanelSettings = layout.opt.pie;
 
     // Applying panel chart settings
     //console.log("Anychart settings", anychartPanelSettings);
@@ -228,12 +229,12 @@ var ACBuilder = (function() {
         getset(anychart, key, value);
     }
 
-    // Applying panel chart settings
+    // Applying chart settings
     if (!isSeriesBased) {
-      // Apply first series 'chart' and 'both' settings
+      // Concat settings of the first series ('chart' and 'both')
       chartPanelSettings = concatObjects(chartPanelSettings, hc.qMeasureInfo[0].vary.chart, hc.qMeasureInfo[0].vary.both);
     }
-    //console.log("Chart settings", chartPanelSettings);
+
     for (key in chartPanelSettings) {
       if (!isSeriesBased && (key.indexOf("xAxis") != -1 || key.indexOf("yAxis") != -1)) continue;
 
@@ -241,12 +242,26 @@ var ACBuilder = (function() {
       if (key == "paletteCALL") {
         value = anychart['palettes'][value];
       }
-      getset(chart, key, value);
+      if(value)
+        getset(chart, key, value);
     }
 
     // Applying subtype settings
     for (key in presetSettings) {
       getset(chart, key, presetSettings[key]);
+    }
+
+    // Applying pie settings
+    if(layout.opt.chartType == chartTypes.PIE_CHART) {
+      for (key in piePanelSettings) {
+        value = piePanelSettings[key];
+
+        if(key == "insideLabelsOffsetCALL" || key == "innerRadiusCALL") {
+          value += "%";
+        }
+        if (value)
+          getset(chart, key, value);
+      }
     }
 
     // Create data.set from prepared data

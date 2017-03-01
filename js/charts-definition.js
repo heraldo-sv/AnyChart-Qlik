@@ -50,7 +50,7 @@ var chartSubtypes = {
 
   // Pie/Donut chart
   "PIE_CHART": 31,
-  "DONUT_CHART": 32,
+  // "DONUT_CHART": 32,
   // "3D_PIE_CHART": 33,
   // "3D_DONUT_CHART": 34
 };
@@ -226,8 +226,8 @@ var chartPresets = [
     isSeriesBased: false,
     defaultSubtype: chartSubtypes.PIE_CHART,
     subtypes: [
-      {value: chartSubtypes.PIE_CHART, label: "Pie Chart", settings: {"innerRadius()": false}},
-      {value: chartSubtypes.DONUT_CHART, label: "Donut Chart", settings: {"innerRadius()": "50%"}}
+      {value: chartSubtypes.PIE_CHART, label: "Pie Chart"/*, settings: {"innerRadius()": false}*/},
+      //{value: chartSubtypes.DONUT_CHART, label: "Donut Chart", settings: {"innerRadius()": "50%"}}
       /*,
       {value: chartSubtypes["3D_PIE_CHART"], label: "3D Pie Chart", ctor: "pie3d", settings: {"innerRadius()": false}},
       {

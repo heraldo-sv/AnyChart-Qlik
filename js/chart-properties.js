@@ -261,6 +261,57 @@ define(["./charts-definition"], function() {
     }
   };
 
+  var pieSettings = {
+    label: "Pie/Donut settings",
+    type: "items",
+    show: function(d){
+      return d.opt.chartType == chartTypes.PIE_CHART;
+    },
+    items: {
+      startAngle: {
+        ref: "opt.pie.startAngleCALL",
+        type: "number",
+        component: "slider",
+        defaultValue: 0,
+        min: 0,
+        max: 360,
+        step: 5,
+        label: "Start angle"
+      },
+      innerRadius: {
+        ref: "opt.pie.innerRadiusCALL",
+        type: "number",
+        component: "slider",
+        defaultValue: 0,
+        min: 0,
+        max: 85,
+        step: 1,
+        label: "Inner radius"
+      },
+      labelsPosition: {
+        ref: "opt.pie.labelsCALL_positionCALL",
+        type: "string",
+        label: "Labels position",
+        component: "dropdown",
+        defaultValue: "inside",
+        options: [{value: "inside", label: "Inside"}, {value: "outside", label: "Outside"}]
+      },
+      labelsOffset: {
+        ref: "opt.pie.insideLabelsOffsetCALL",
+        type: "number",
+        component: "slider",
+        defaultValue: 50,
+        min: 15,
+        max: 85,
+        step: 3,
+        label: "Inside labels offset",
+        show: function(d){
+          return d.opt.pie.labelsCALL_positionCALL == "inside";
+        }
+      },
+    }
+  };
+
   var credits = {
     label: "Credits",
     type: "items",
@@ -336,6 +387,7 @@ define(["./charts-definition"], function() {
       legend: legend,
       xAxis: xAxis,
       yAxis: yAxis,
+      pieSettings: pieSettings,
       credits: credits
     }
   };

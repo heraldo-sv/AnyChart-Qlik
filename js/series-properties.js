@@ -15,7 +15,7 @@ define([], function() {
           label: "Type",
           ref: "qDef.series.seriesTypeCALL",
           defaultValue: null,
-          options: function(l, g){
+          options: function(l, g) {
             return getSeriesTypeOptions(g.layout.opt.chartType);
           },
           show: function(l, g) {
@@ -55,8 +55,10 @@ define([], function() {
           label: "Labels formatter",
           defaultValue: "{%Value}{decimalsCount:2}",
           //defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%", // for pie
-          show: function(l) {
-            return l.qDef.vary.chart && l.qDef.vary.chart.labelsCALL || l.qDef.vary.series && l.qDef.vary.series.labelsCALL;
+          show: function(l, g) {
+            var seriesBased = getChartTypePreset(g.layout.opt.chartType)['isSeriesBased'];
+            return (!seriesBased && l.qDef.vary.chart && l.qDef.vary.chart.labelsCALL) ||
+                (seriesBased && l.qDef.vary.series && l.qDef.vary.series.labelsCALL);
           }
         }
       }
