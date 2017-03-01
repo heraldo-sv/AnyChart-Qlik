@@ -59,7 +59,19 @@ define(["./charts-definition"], function() {
         ref: "opt.chart.legendCALL",
         type: "boolean",
         label: "Legend",
-        defaultValue: false
+        defaultValue: false,
+        show: function(d) {
+          return d.opt.chartType != chartTypes.PIE_CHART;
+        }
+      },
+      pieLegend: {
+        ref: "opt.pie.legendCALL",
+        type: "boolean",
+        label: "Legend",
+        defaultValue: true,
+        show: function(d) {
+          return d.opt.chartType == chartTypes.PIE_CHART;
+        }
       },
       layout: {
         ref: "opt.chart.legendCALL_itemsLayoutCALL",
@@ -71,7 +83,8 @@ define(["./charts-definition"], function() {
           {value: "vertical", label: "Vertical"}
         ],
         show: function(d) {
-          return d.opt.chart["legendCALL"];
+          return (d.opt.chartType != chartTypes.PIE_CHART && d.opt.chart["legendCALL"]) ||
+              (d.opt.chartType == chartTypes.PIE_CHART && d.opt.pie["legendCALL"]);
         }
       },
       position: {
@@ -86,7 +99,8 @@ define(["./charts-definition"], function() {
           {value: "right", label: "Right"}
         ],
         show: function(d) {
-          return d.opt.chart["legendCALL"];
+          return (d.opt.chartType != chartTypes.PIE_CHART && d.opt.chart["legendCALL"]) ||
+              (d.opt.chartType == chartTypes.PIE_CHART && d.opt.pie["legendCALL"]);
         }
       },
       align: {
@@ -103,7 +117,8 @@ define(["./charts-definition"], function() {
           return options.concat(concat);
         },
         show: function(d) {
-          return d.opt.chart["legendCALL"];
+          return (d.opt.chartType != chartTypes.PIE_CHART && d.opt.chart["legendCALL"]) ||
+              (d.opt.chartType == chartTypes.PIE_CHART && d.opt.pie["legendCALL"]);
         }
       }
     }

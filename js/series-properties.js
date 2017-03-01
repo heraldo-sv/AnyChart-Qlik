@@ -32,7 +32,7 @@ define([], function() {
           }
         },
         seriesLabels: {
-          ref: "qDef.vary.series.labelsCALL",
+          ref: "qDef.series.labelsCALL",
           type: "boolean",
           label: "Show labels",
           defaultValue: false,
@@ -40,25 +40,32 @@ define([], function() {
             return getChartTypePreset(g.layout.opt.chartType)['isSeriesBased'];
           }
         },
-        chartLabels: {
-          ref: "qDef.vary.chart.labelsCALL",
-          type: "boolean",
-          label: "Show labels",
-          defaultValue: true,
-          show: function(l, g) {
-            return !getChartTypePreset(g.layout.opt.chartType)['isSeriesBased'];
-          }
-        },
-        labelsFormatter: {
-          ref: "qDef.vary.both.labelsCALL_textFormatterCALL",
+        seriesLabelsFormatter: {
+          ref: "qDef.series.labelsCALL_textFormatterCALL",
           type: "string",
           label: "Labels formatter",
           defaultValue: "{%Value}{decimalsCount:2}",
           //defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%", // for pie
           show: function(l, g) {
-            var seriesBased = getChartTypePreset(g.layout.opt.chartType)['isSeriesBased'];
-            return (!seriesBased && l.qDef.vary.chart && l.qDef.vary.chart.labelsCALL) ||
-                (seriesBased && l.qDef.vary.series && l.qDef.vary.series.labelsCALL);
+            return l.qDef.series.labelsCALL && getChartTypePreset(g.layout.opt.chartType)['isSeriesBased'];
+          }
+        },
+        pieLabels: {
+          ref: "qDef.opt.pie.labelsCALL",
+          type: "boolean",
+          label: "Show labels",
+          defaultValue: true,
+          show: function(l, g) {
+            return g.layout.opt.chartType == chartTypes.PIE_CHART;
+          }
+        },
+        pieLabelsFormatter: {
+          ref: "qDef.opt.pie.labelsCALL_textFormatterCALL",
+          type: "string",
+          label: "Labels formatter",
+          defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%",
+          show: function(l, g) {
+            return g.layout.opt.chartType == chartTypes.PIE_CHART;
           }
         }
       }

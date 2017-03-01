@@ -217,28 +217,27 @@ var ACBuilder = (function() {
 
     var key;
     var value;
-    var anychartPanelSettings = layout.opt.anychart;
-    var chartPanelSettings = layout.opt.chart;
-    var piePanelSettings = layout.opt.pie;
+    var anychartSettings = layout.opt.anychart;
+    var chartSettings = layout.opt.chart;
+    var pieSettings = concatObjects(layout.opt.pie, hc.qMeasureInfo[0].opt.pie);
 
     // Applying panel chart settings
-    //console.log("Anychart settings", anychartPanelSettings);
-    for (key in anychartPanelSettings) {
-      value = anychartPanelSettings[key];
-      if (value)
+    for (key in anychartSettings) {
+      value = anychartSettings[key];
+      if (value != undefined)
         getset(anychart, key, value);
     }
 
     // Applying chart settings
     if (!isSeriesBased) {
       // Concat settings of the first series ('chart' and 'both')
-      chartPanelSettings = concatObjects(chartPanelSettings, hc.qMeasureInfo[0].vary.chart, hc.qMeasureInfo[0].vary.both);
+      //chartSettings = concatObjects(chartSettings, hc.qMeasureInfo[0].vary.chart, hc.qMeasureInfo[0].vary.both);
     }
 
-    for (key in chartPanelSettings) {
+    for (key in chartSettings) {
       if (!isSeriesBased && (key.indexOf("xAxis") != -1 || key.indexOf("yAxis") != -1)) continue;
 
-      value = chartPanelSettings[key];
+      value = chartSettings[key];
       if (key == "paletteCALL") {
         value = anychart['palettes'][value];
       }
@@ -253,13 +252,13 @@ var ACBuilder = (function() {
 
     // Applying pie settings
     if(layout.opt.chartType == chartTypes.PIE_CHART) {
-      for (key in piePanelSettings) {
-        value = piePanelSettings[key];
+      for (key in pieSettings) {
+        value = pieSettings[key];
 
         if(key == "insideLabelsOffsetCALL" || key == "innerRadiusCALL") {
           value += "%";
         }
-        if (value)
+        if (value != undefined)
           getset(chart, key, value);
       }
     }
@@ -289,12 +288,12 @@ var ACBuilder = (function() {
         var series = chart[defaultSeriesType](seriesData);
         series.name(hc.qMeasureInfo[i]['qFallbackTitle']);
 
-        var seriesPanelSettings = hc.qMeasureInfo[i].series;
-        seriesPanelSettings = concatObjects(seriesPanelSettings, hc.qMeasureInfo[i].vary.series, hc.qMeasureInfo[i].vary.both);
+        var seriesSettings = hc.qMeasureInfo[i].series;
+        //seriesSettings = concatObjects(seriesSettings, hc.qMeasureInfo[i].vary.series, hc.qMeasureInfo[i].vary.both);
 
-        //console.log("Series settings", seriesPanelSettings);
-        for (key in seriesPanelSettings) {
-          value = seriesPanelSettings[key];
+        //console.log("Series settings", seriesSettings);
+        for (key in seriesSettings) {
+          value = seriesSettings[key];
 
           if (key == "seriesTypeCALL" && !value) {
             continue;
