@@ -120,6 +120,56 @@ define(["./charts-definition"], function() {
           return (d.opt.chartType != chartTypes.PIE_CHART && d.opt.chart["legendCALL"]) ||
               (d.opt.chartType == chartTypes.PIE_CHART && d.opt.pie["legendCALL"]);
         }
+      },
+      /***** legend title */
+      legendTitle: {
+        ref: "opt.chart.legendCALL_titleCALL",
+        type: "boolean",
+        label: "Legend title",
+        defaultValue: false,
+        show: function(d) {
+          return (d.opt.chartType != chartTypes.PIE_CHART && d.opt.chart["legendCALL"]) ||
+              (d.opt.chartType == chartTypes.PIE_CHART && d.opt.pie["legendCALL"]);
+        }
+      },
+      titleText: {
+        ref: "opt.chart.legendCALL_titleCALL_textCALL",
+        type: "string",
+        show: function(d) {
+          return d.opt.chart.legendCALL_titleCALL;
+        }
+      },
+      legendTitleOrientation: {
+        ref: "opt.chart.legendCALL_titleCALL_orientationCALL",
+        type: "string",
+        label: "Orientation",
+        component: "dropdown",
+        options: [
+          {value: "top", label: "Top"},
+          {value: "bottom", label: "Bottom"},
+          {value: "left", label: "Left"},
+          {value: "right", label: "Right"}
+        ],
+        show: function(d) {
+          return d.opt.chart.legendCALL_titleCALL;
+        }
+      },
+      legendTitleAlign: {
+        ref: "opt.chart.legendCALL_titleCALL_alignCALL",
+        type: "string",
+        label: "Align",
+        component: "dropdown",
+        options: function(d) {
+          var options = [{value: "center", label: "Center"}];
+          var pos = d.opt.chart.legendCALL_titleCALL_orientationCALL;
+          var concat = (pos == "left" || pos == "right") ?
+              [{value: "top", label: "Top"}, {value: "bottom", label: "Bottom"}] :
+              [{value: "left", label: "Left"}, {value: "right", label: "Right"}];
+          return options.concat(concat);
+        },
+        show: function(d) {
+          return d.opt.chart.legendCALL_titleCALL;
+        }
       }
     }
   };
