@@ -34,7 +34,8 @@ AnyChart extension provides many chart types with a set of subtypes for each typ
 ### Series settings
 
 Charts of all types except Pie can have more than one series. Number of series depends on number of added measures.
-One measure corresponds one series. While chart's initialization series are added in order of measures were created.
+One measure corresponds one series. The order of series creation is the same that measures have. So if you want to reorder
+your series just reorder measures.
 
 Each series can be configured individually. You can set up series name, markers and labels display and labels text format.
 
