@@ -7,7 +7,7 @@ Wrapping in the AnyChart JS viz library as Qlik Sense objects
 
 ## Install
 
-Download and unzip in Extensions folder or import to server (?).
+Download and unzip in Extensions folder or import to server.
 
 ### Chart types
 
@@ -33,28 +33,31 @@ AnyChart extension provides many chart types with a set of subtypes for each typ
 
 ### Series settings
 
-Количество серий на чарте определяется количеством добавленных measures. Одно measure соотвествует одной серии.
-При инициализации чарта серии добавляются в порядке добавленных measure.
+Charts of all types except Pie can mode than one series. Number of series depends on number of added measures.
+One measure corresponds one series. While chart's initialization series are added in order of measures were created.
 
-На соответствующей панели measure каждой серии можно настроить название, отображение маркеров и меток (labels), а также формат меток.
+Each series can be configured individually. You can set up series name, markers and labels display and labels text format.
 
 ![AnyChart-Qlik extension line chart](/img/2panel_measures.png?raw=true)
 
-Подробно про форматы меток чатов AnyChart вы можете читать [здесь](http://docs.anychart.com/7.13.0/Common_Settings/Text_Formatters).
+More about AnyChart's text formatters you can read [here](http://docs.anychart.com/7.13.0/Common_Settings/Text_Formatters).
+Also you can find there the list of available tokens that can be used in text formatters patterns.
 
 Отдельной серии можно задать тип, отличный от типа по умолчанию. Это наделяет чарты AnyChart просто фантастической гибкостью.
+
+Moreover for every series you can set up series type different than chart type's default. This grants AnyChart charts just fantastic flexibility!
 
 ![AnyChart-Qlik extension mixed series types](/img/mixed4.png?raw=true)
 
 ### Other settings
 
 #### Palette
-Вы можете менять цветовую схему чарта, изменяя настройку Palette:
+You can change color scheme of a chart by using Palette dropdown.
 
 ![AnyChart-Qlik extension palette setting](/img/palettes.png?raw=true)
 
 #### Legend
-AnyChart extension даёт возможность управлять легендой чарта: включать, позиционировать, настраивать компоновку, настраивать заголовок.
+AnyChart extension also gives ability to manage chart's legend: enable/disable it, set up legend's layout, position, align, set up legend's title.
 
 ![AnyChart-Qlik extension legend settings](/img/legend1.png?raw=true)
 
