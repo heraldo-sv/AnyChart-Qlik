@@ -5,9 +5,36 @@ AnyChart-Qlik
 
 Wrapping in the AnyChart JS viz library as Qlik Sense objects
 
-# Install
+## Install
 
-Download and unzip in Extensions folder or import to server.
+Download and unzip in Extensions folder or import to server (?).
+
+### Chart types
+
+AnyChart extension provides many chart types with a set of subtypes for each type:
+
+* Line chart
+![AnyChart-Qlik extension line chart](/img/image1.png?raw=true)
+
+* Area chart
+* Column chart
+* Bar chart
+* Scatter chart
+* Pie/Donut chart
+
+### Series settings
+
+Серии можно задать тип, отличный от дефолтного
+
+### Other settings
+
+#### Palette
+
+#### Legend
+
+#### X and Y-Axes settings
+
+#### Credits
 
 ## Contacts
 
