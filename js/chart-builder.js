@@ -1,4 +1,4 @@
-var ACBuilder = (function() {
+var ACBuilder = function() {
 
   function concatObjects() {
     var ret = {};
@@ -118,19 +118,25 @@ var ACBuilder = (function() {
     return consistency;
   };
 
-  var updateSelections = function() {
-    for (var s = 0; s < chart.getSeriesCount(); s++) {
-      chart.getSeriesAt(s).select(selectedIndexes);
+  var _static = {
+    /**
+     * 'chartId' : {'chart': Object, 'selected': integer[]}
+     */
+  };
+
+  this.updateSelections = function(id) {
+    for (var s = 0; s < _static[id]['chart'].getSeriesCount(); s++) {
+      _static[id]['chart'].getSeriesAt(s).select(_static[id]['selected']);
     }
   };
 
-  var chart;
-  var selectedIndexes = [];
-
   this.buildChart = function(view, layout) {
-
     if (!checkProperties(view, layout))
       return null;
+
+    var self = this;
+    var id = layout.qInfo.qId;
+    var hc = layout.qHyperCube;
 
     var typePreset = getChartTypePreset(layout.opt.chartType);
     var subtypePreset = getSubtypePreset(typePreset, layout.opt.chartSubtype);
@@ -138,10 +144,12 @@ var ACBuilder = (function() {
     var isSeriesBased = typePreset.isSeriesBased;
     var defaultSeriesType = isSeriesBased ? subtypePreset.seriesType : null;
     var presetSettings = subtypePreset.settings || {};
-    var chartType = chart && chart.getType();
-    var hc = layout.qHyperCube;
     var dimIndexes = [];
-    selectedIndexes = [];
+
+    if (!_static[id]) {
+      _static[id] = {chart: null, selected: []};
+    }
+    _static[id]['selected'] = [];
 
     // Prepare data
     var matrix = hc.qDataPages[0].qMatrix;
@@ -153,67 +161,66 @@ var ACBuilder = (function() {
       });
     });
 
-    // console.log(matrix[0][1]);
+    // console.log("====================", chartConstructor);
+    // console.log(matrix[0]);
     // console.log(data[0]);
 
-    //console.log("data: ", /*data,*/ dimIndexes);
-    if (true || !chart || chartType != chartConstructor) { // Now always create new chart
-      if (chart && typeof chart['dispose'] == 'function') {
-        anychart.utils.hideTooltips();
-        chart['dispose']();
+    if (_static[id]['chart'] && typeof _static[id]['chart']['dispose'] == 'function') {
+      anychart.utils.hideTooltips();
+      _static[id]['chart'].dispose();
+    }
+
+    // Create chart instance
+    _static[id]['chart'] = anychart[chartConstructor]();
+
+    // Selections processing
+    _static[id]['chart'].interactivity().selectionMode('none');
+
+    var pointClicked = false;
+    _static[id]['chart'].listen("mouseDown", function() {
+      if (!pointClicked) {
+        _static[id]['chart'].dispatchEvent("pointMouseDown");
+      }
+      pointClicked = false;
+    });
+
+    _static[id]['chart'].listen("pointMouseDown", function(evt) {
+      if (evt.pointIndex != undefined) {
+        pointClicked = true;
+
+        view.selectValues(0, [dimIndexes[evt.pointIndex]], true);
+
+        var index = _static[id]['selected'].indexOf(evt.pointIndex);
+        if (index == -1) {
+          _static[id]['selected'].push(evt.pointIndex);
+        } else {
+          _static[id]['selected'].splice(index, 1);
+        }
       }
 
-      // Create chart instance
-      chart = anychart[chartConstructor]();
+      if (isSeriesBased)
+        self.updateSelections(id);
+    });
 
-      // Events
-      chart.interactivity().selectionMode('none');
-
-      var pointClicked = false;
-      chart.listen("mouseDown", function() {
-        if (!pointClicked) {
-          chart.dispatchEvent("pointMouseDown");
+    view.clearSelectedValues = function() {
+      console.log("called clearSelectedValues");
+      _static[id]['selected'] = [];
+      if (isSeriesBased)
+        self.updateSelections(id);
+      else {
+        switch (chartConstructor) {
+            // Now we have only Pie
+          case 'pie':
+            _static[id]['chart'].explodeSlices(false);
+            break;
+          default:
+            break;
         }
-        pointClicked = false;
-      });
+      }
+    };
 
-      chart.listen("pointMouseDown", function(evt) {
-        if (evt.pointIndex != undefined) {
-          pointClicked = true;
-
-          view.selectValues(0, [dimIndexes[evt.pointIndex]], true);
-
-          var index = selectedIndexes.indexOf(evt.pointIndex);
-          if (index == -1) {
-            selectedIndexes.push(evt.pointIndex);
-          } else {
-            selectedIndexes.splice(index, 1);
-          }
-        }
-
-        if (isSeriesBased)
-          updateSelections();
-      });
-
-      view.clearSelectedValues = function() {
-        selectedIndexes = [];
-        if (isSeriesBased)
-          updateSelections();
-        else {
-          switch (chartConstructor) {
-              // Now we have only Pie
-            case 'pie':
-              chart.explodeSlices(false);
-              break;
-            default:
-              break;
-          }
-        }
-      };
-
-      // Hide anychart's context menu
-      chart.contextMenu(false);
-    }
+    // Hide anychart's context menu
+    _static[id]['chart'].contextMenu(false);
 
     var key;
     var value;
@@ -228,12 +235,6 @@ var ACBuilder = (function() {
         getset(anychart, key, value);
     }
 
-    // Applying chart settings
-    if (!isSeriesBased) {
-      // Concat settings of the first series ('chart' and 'both')
-      //chartSettings = concatObjects(chartSettings, hc.qMeasureInfo[0].vary.chart, hc.qMeasureInfo[0].vary.both);
-    }
-
     for (key in chartSettings) {
       if (!isSeriesBased && (key.indexOf("xAxis") != -1 || key.indexOf("yAxis") != -1)) continue;
 
@@ -241,25 +242,25 @@ var ACBuilder = (function() {
       if (key == "paletteCALL") {
         value = anychart['palettes'][value];
       }
-      if(value)
-        getset(chart, key, value);
+      if (value)
+        getset(_static[id]['chart'], key, value);
     }
 
     // Applying subtype settings
     for (key in presetSettings) {
-      getset(chart, key, presetSettings[key]);
+      getset(_static[id]['chart'], key, presetSettings[key]);
     }
 
     // Applying pie settings
-    if(layout.opt.chartType == chartTypes.PIE_CHART) {
+    if (layout.opt.chartType == chartTypes.PIE_CHART) {
       for (key in pieSettings) {
         value = pieSettings[key];
 
-        if(key == "insideLabelsOffsetCALL" || key == "innerRadiusCALL") {
+        if (key == "insideLabelsOffsetCALL" || key == "innerRadiusCALL") {
           value += "%";
         }
         if (value != undefined)
-          getset(chart, key, value);
+          getset(_static[id]['chart'], key, value);
       }
     }
 
@@ -269,7 +270,7 @@ var ACBuilder = (function() {
     // console.log(hc.qMeasureInfo[0]);
     if (isSeriesBased) {
       // Create series and apply panel series settings
-      chart.removeAllSeries();
+      _static[id]['chart'].removeAllSeries();
 
       var i;
       for (i = 0; i < hc.qMeasureInfo.length; i++) {
@@ -285,13 +286,10 @@ var ACBuilder = (function() {
         }
 
         // Create series and apply series settings
-        var series = chart[defaultSeriesType](seriesData);
+        var series = _static[id]['chart'][defaultSeriesType](seriesData);
         series.name(hc.qMeasureInfo[i]['qFallbackTitle']);
 
         var seriesSettings = hc.qMeasureInfo[i].series;
-        //seriesSettings = concatObjects(seriesSettings, hc.qMeasureInfo[i].vary.series, hc.qMeasureInfo[i].vary.both);
-
-        //console.log("Series settings", seriesSettings);
         for (key in seriesSettings) {
           value = seriesSettings[key];
 
@@ -303,14 +301,12 @@ var ACBuilder = (function() {
       }
     } else {
       // Just add data to chart
-      chart.data(dataSet);
+      _static[id]['chart'].data(dataSet);
     }
 
     // debug
     //window['chart'] = chart;
 
-    return chart;
+    return _static[id]['chart'];
   };
-
-  return this;
-})();
+};
