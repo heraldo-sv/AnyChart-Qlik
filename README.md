@@ -44,8 +44,6 @@ Each series can be configured individually. You can set up series name, markers 
 More about AnyChart's text formatters you can read [here](http://docs.anychart.com/7.13.0/Common_Settings/Text_Formatters).
 Also you can find there the list of available tokens that can be used in text formatters patterns.
 
-Отдельной серии можно задать тип, отличный от типа по умолчанию. Это наделяет чарты AnyChart просто фантастической гибкостью.
-
 Moreover for every series you can set up series type different than chart type's default. This grants AnyChart charts just fantastic flexibility!
 
 ![AnyChart-Qlik extension mixed series types](/img/mixed4.png?raw=true)
