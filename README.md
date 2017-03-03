@@ -3,33 +3,33 @@
 AnyChart-Qlik
 ================
 
-Wrapping in the AnyChart JS viz library as Qlik Sense objects
+Wrapping in the AnyChart JS viz library as Qlik Sense objects.
 
-## Install
+## How to use
 
-Download and unzip in Extensions folder or import to server.
+Download AnyChart-Qlik.zip and unzip into your Qlik Sense extensions folder.
 
 ### Chart types
 
 AnyChart extension provides many chart types with a set of subtypes for each type.
 
 #### Line chart
-![AnyChart-Qlik extension line chart](/img/image1.png?raw=true)
+![AnyChart-Qlik extension line chart](/img/t_line.jpg?raw=true)
 
 #### Area chart
-![AnyChart-Qlik extension area chart](/img/image2.png?raw=true)
+![AnyChart-Qlik extension area chart](/img/t_area.jpg?raw=true)
 
 #### Column chart
-![AnyChart-Qlik extension column chart](/img/image3.png?raw=true)
+![AnyChart-Qlik extension column chart](/img/t_column.jpg?raw=true)
 
 #### Bar chart
-![AnyChart-Qlik extension bar chart](/img/image4.png?raw=true)
+![AnyChart-Qlik extension bar chart](/img/t_bar.jpg?raw=true)
 
 #### Scatter chart
-![AnyChart-Qlik extension scatter chart](/img/types_scatter1.png?raw=true)
+![AnyChart-Qlik extension scatter chart](/img/t_scatter.jpg?raw=true)
 
 #### Pie/Donut chart
-![AnyChart-Qlik extension pie/donut chart](/img/image6.png?raw=true)
+![AnyChart-Qlik extension pie/donut chart](/img/t_pie.jpg?raw=true)
 
 ### Series settings
 
@@ -39,31 +39,31 @@ your series just reorder measures.
 
 Each series can be configured individually. You can set up series name, markers and labels display and labels text format.
 
-![AnyChart-Qlik extension line chart](/img/2panel_measures.png?raw=true)
+![AnyChart-Qlik extension line chart](/img/panel_01.jpg?raw=true)
 
 More about AnyChart's text formatters you can read [here](http://docs.anychart.com/7.13.0/Common_Settings/Text_Formatters).
 Also you can find there the list of available tokens that can be used in text formatters patterns.
 
-Moreover for every series you can set up series type different than chart type's default. This grants AnyChart charts just fantastic flexibility!
+Moreover for every series you can choose series type different than chart's default series type. This feature grants AnyChart charts just fantastic flexibility!
 
-![AnyChart-Qlik extension mixed series types](/img/mixed4.png?raw=true)
+![AnyChart-Qlik extension mixed series types](/img/_mixed.jpg?raw=true)
 
 ### Other settings
 
 #### Palette
 You can change color scheme of a chart by using Palette dropdown.
 
-![AnyChart-Qlik extension palette setting](/img/palettes.png?raw=true)
+![AnyChart-Qlik extension palette setting](/img/_paletts.jpg?raw=true)
 
 #### Legend
 AnyChart extension also gives ability to manage chart's legend: enable/disable it, set up legend's layout, position, align, set up legend's title.
 
-![AnyChart-Qlik extension legend settings](/img/legend1.png?raw=true)
+![AnyChart-Qlik extension legend settings](/img/_legend.jpg?raw=true)
 
 #### Axes
 Extension also provides you ability to set up axes - it's orientation, titles and labels.
 
-![AnyChart-Qlik extension axes settings](/img/4panel_axis.png?raw=true)
+![AnyChart-Qlik extension axes settings](/img/panel_02.jpg?raw=true)
 
 ## Contacts
 

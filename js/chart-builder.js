@@ -203,7 +203,6 @@ var ACBuilder = function() {
     });
 
     view.clearSelectedValues = function() {
-      console.log("called clearSelectedValues");
       _static[id]['selected'] = [];
       if (isSeriesBased)
         self.updateSelections(id);
@@ -228,7 +227,7 @@ var ACBuilder = function() {
     var chartSettings = layout.opt.chart;
     var pieSettings = concatObjects(layout.opt.pie, hc.qMeasureInfo[0].opt.pie);
 
-    // Applying panel chart settings
+    // Applying gobal settings
     for (key in anychartSettings) {
       value = anychartSettings[key];
       if (value != undefined)
@@ -242,7 +241,8 @@ var ACBuilder = function() {
       if (key == "paletteCALL") {
         value = anychart['palettes'][value];
       }
-      if (value)
+
+      if (value != undefined)
         getset(_static[id]['chart'], key, value);
     }
 
