@@ -2,76 +2,89 @@
 
 # AnyChart Extension for Qlik Sense
 
-Wrapping in the AnyChart JS viz library as Qlik Sense objects.
+AnyChart JavaScript Visualization Library [extension](https://help.qlik.com/en-US/sense-developer/3.2/Subsystems/Extensions/Content/custom-objects.htm) for [Qlik Sense](http://www.qlik.com/us/products/qlik-sense).
 
-AnyChart is a flexible JavaScript (HTML5) based solution that allows developers to embed interactive and great looking charts and dashboards into any web, standalone or mobile project. Whether you need to enhance your website with better reporting, embed dashboards into your on-premises and SaaS systems, or build an entire new product, AnyChart covers all your data visualization needs. Our products include massive out-of-the-box capabilities, combined with the flexibility and the simplicity.
-Loved by thousands of happy customers.
+[AnyChart](http://www.anychart.com/) is a flexible JavaScript (HTML5) based solution that allows developers to embed interactive and great looking charts and dashboards into any web, standalone or mobile project. AnyChart products include massive out-of-the-box capabilities, combined with the flexibility and the simplicity.
+
+Qlik Sense is a self-service data visualization and discovery application designed for all business users whether, individuals, groups, or organizations. With Qlik Sense you can analyze data and make data discoveries on your own. You can share knowledge and analyze data in groups and across organizations. Qlik Sense lets you ask and answer your own questions and follow your own paths to insight, as well as enabling you and your colleagues to reach decisions collaboratively.
 
 ## Download and install
 
-You can download extension archive form [here](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip). Now that the extension has been downloaded, it needs to be installed into Qlik Sense.
+Download [AnyChart Qlick Sense Extension](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip).
 
 ### Installing Extension into Qlik Sense Desktop
-Find the .zip file that was downloaded, and unzip it. Open the unzipped folder to find another folder inside.
-Copy that folder and navigate to *documents/qlik/sense/extensions* and paste the folder there.
+
+Locate .zip file with extension and unzip it. Open the unzipped folder to find another folder inside. Copy that folder and navigate to *documents/qlik/sense/extensions* and paste the folder there.
 
 ### Installing Extension into Qlik Sense Server
-Go to your QMC and, in the navigation menu on the left, under “Manage Resources,” click “Extensions.”
-Then, in the action bar at the bottom of the screen, click “Import.” Click “Choose File” in the popup and navigate to the folder that was downloaded, select it, then click “Import.”
+
+Go to your QMC and, in the navigation menu on the left, under “Manage Resources”, click “Extensions”.
+
+Then, in the action bar at the bottom of the screen, click “Import”
+
+Click “Choose File” in the popup and navigate to the folder that was downloaded, select it, then click “Import”.
 
 ## Chart types
 
 AnyChart extension provides many chart types with a set of subtypes for each type.
 
 ### Line chart
+
 ![AnyChart-Qlik extension line chart](/img/t_line.jpg?raw=true)
 
 ### Area chart
+
 ![AnyChart-Qlik extension area chart](/img/t_area.jpg?raw=true)
 
 ### Column chart
+
 ![AnyChart-Qlik extension column chart](/img/t_column.jpg?raw=true)
 
 ### Bar chart
+
 ![AnyChart-Qlik extension bar chart](/img/t_bar.jpg?raw=true)
 
 ### Scatter chart
+
 ![AnyChart-Qlik extension scatter chart](/img/t_scatter.jpg?raw=true)
 
 ### Pie/Donut chart
+
 ![AnyChart-Qlik extension pie/donut chart](/img/t_pie.jpg?raw=true)
 
 ## Series settings
 
-Charts of all types (except Pie) can have more than one series. Number of series depends on number of added measures.
-One measure corresponds one series. The order of series creation is the same that measures have. So if you want to reorder
-your series just reorder measures.
+All chart types except Pie can have more than one series. The number of series depends on the number of measures.
 
-Each series can be configured individually. You can set up series name, markers and labels display and labels text format.
+One measure corresponds to one series. The order of series is the same order measures have. To reorder series just reorder measures.
+
+Each series can be configured individually. You can set series name, markers and labels display and labels text format.
 
 ![AnyChart-Qlik extension line chart](/img/panel_01.jpg?raw=true)
 
-More about AnyChart's text formatters you can read [here](http://docs.anychart.com/7.13.0/Common_Settings/Text_Formatters).
-Also you can find there the list of available tokens that can be used in text formatters patterns.
+Read more about [AnyChart Text Formatters](http://docs.anychart.com/latest/Common_Settings/Text_Formatters).
 
-Moreover for every series you can choose series type different than chart's default series type. This feature grants AnyChart charts just fantastic flexibility!
+For every series you can choose series type different than chart's default series type.
 
 ![AnyChart-Qlik extension mixed series types](/img/_mixed.jpg?raw=true)
 
 ## Other settings
 
 ### Palette
-You can change color scheme of a chart by using Palette dropdown.
+
+You can change the color scheme of a chart by using Palette dropdown.
 
 ![AnyChart-Qlik extension palette setting](/img/_paletts.jpg?raw=true)
 
 ### Legend
-AnyChart extension also gives you the ability to manage chart's legend: enable/disable it, set up legend's layout, position, align, set up legend's title.
+
+AnyChart extension allows to configure the legend: enable/disable, set layout, position, align, and title.
 
 ![AnyChart-Qlik extension legend settings](/img/_legend.jpg?raw=true)
 
 ### Axes
-Extension also provides you ability to set up axes - it's orientation, titles and labels.
+
+AnyChart Extension allows to configure axes: orientation, titles and labels and so on.
 
 ![AnyChart-Qlik extension axes settings](/img/panel_02.jpg?raw=true)
 
@@ -89,7 +102,7 @@ Extension also provides you ability to set up axes - it's orientation, titles an
 * [Download AnyChart](http://www.anychart.com/download/)
 * [AnyChart Licensing](http://www.anychart.com/buy/)
 * [AnyChart Support](http://www.anychart.com/support/)
-* [Report Issues](https://github.com/AnyChart/AnyChart-Ember/issues)
+* [Report Issues](https://github.com/AnyChart/AnyChart-Qlik/issues)
 * [AnyChart Playground](http://playground.anychart.com)
 * [AnyChart Documentation](http://docs.anychart.com)
 * [AnyChart API Reference](http://api.anychart.com)
