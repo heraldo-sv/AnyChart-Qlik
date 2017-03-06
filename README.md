@@ -14,7 +14,7 @@ Copy that folder and navigate to *documents/qlik/sense/extensions* and paste the
 
 ### Installing Extension into Qlik Sense Server
 Go to your QMC and, in the navigation menu on the left, under “Manage Resources,” click “Extensions.”
-Then, in the action bar at the bottom of the screen, click “Import.” Click “Choose File” in the popup and navigate to the folder that was downloaded in step 1, select it, then click “Import.”
+Then, in the action bar at the bottom of the screen, click “Import.” Click “Choose File” in the popup and navigate to the folder that was downloaded, select it, then click “Import.”
 
 ## Chart types
 
