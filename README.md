@@ -4,6 +4,9 @@
 
 Wrapping in the AnyChart JS viz library as Qlik Sense objects.
 
+AnyChart is a flexible JavaScript (HTML5) based solution that allows developers to embed interactive and great looking charts and dashboards into any web, standalone or mobile project. Whether you need to enhance your website with better reporting, embed dashboards into your on-premises and SaaS systems, or build an entire new product, AnyChart covers all your data visualization needs. Our products include massive out-of-the-box capabilities, combined with the flexibility and the simplicity.
+Loved by thousands of happy customers.
+
 ## Download and install
 
 You can download extension archive form [here](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip). Now that the extension has been downloaded, it needs to be installed into Qlik Sense.
