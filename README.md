@@ -1,39 +1,47 @@
 [<img src="https://cdn.anychart.com/images/logo-transparent-segoe.png?2" width="234px" alt="AnyChart - Robust JavaScript/HTML5 Chart library for any project">](https://anychart.com)
 
-AnyChart-Qlik
-================
+# AnyChart Extension for Qlik Sense
 
 Wrapping in the AnyChart JS viz library as Qlik Sense objects.
 
-## How to use
+## Download and install
 
-Download AnyChart-Qlik.zip and unzip into your Qlik Sense extensions folder.
+You can download extension archive form [here](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip).
 
-### Chart types
+### Installing Extension into Qlik Sense Desktop
+Find the .zip file that was downloaded, and unzip it. Open the unzipped folder to find another folder inside.
+Copy that folder and navigate to *documents/qlik/sense/extensions* and paste the folder there.
+
+### Installing Extension into Qlik Sense Server
+Now that the extension has been downloaded, it needs to be installed into Qlik Sense.
+Go to your QMC and, in the navigation menu on the left, under “Manage Resources,” click “Extensions.”
+Then, in the action bar at the bottom of the screen, click “Import.” Click “Choose File” in the popup and navigate to the folder that was downloaded in step 1, select it, then click “Import.”
+
+## Chart types
 
 AnyChart extension provides many chart types with a set of subtypes for each type.
 
-#### Line chart
+### Line chart
 ![AnyChart-Qlik extension line chart](/img/t_line.jpg?raw=true)
 
-#### Area chart
+### Area chart
 ![AnyChart-Qlik extension area chart](/img/t_area.jpg?raw=true)
 
-#### Column chart
+### Column chart
 ![AnyChart-Qlik extension column chart](/img/t_column.jpg?raw=true)
 
-#### Bar chart
+### Bar chart
 ![AnyChart-Qlik extension bar chart](/img/t_bar.jpg?raw=true)
 
-#### Scatter chart
+### Scatter chart
 ![AnyChart-Qlik extension scatter chart](/img/t_scatter.jpg?raw=true)
 
-#### Pie/Donut chart
+### Pie/Donut chart
 ![AnyChart-Qlik extension pie/donut chart](/img/t_pie.jpg?raw=true)
 
-### Series settings
+## Series settings
 
-Charts of all types except Pie can have more than one series. Number of series depends on number of added measures.
+Charts of all types (except Pie) can have more than one series. Number of series depends on number of added measures.
 One measure corresponds one series. The order of series creation is the same that measures have. So if you want to reorder
 your series just reorder measures.
 
@@ -48,19 +56,19 @@ Moreover for every series you can choose series type different than chart's defa
 
 ![AnyChart-Qlik extension mixed series types](/img/_mixed.jpg?raw=true)
 
-### Other settings
+## Other settings
 
-#### Palette
+### Palette
 You can change color scheme of a chart by using Palette dropdown.
 
 ![AnyChart-Qlik extension palette setting](/img/_paletts.jpg?raw=true)
 
-#### Legend
-AnyChart extension also gives ability to manage chart's legend: enable/disable it, set up legend's layout, position, align, set up legend's title.
+### Legend
+AnyChart extension also gives you the ability to manage chart's legend: enable/disable it, set up legend's layout, position, align, set up legend's title.
 
 ![AnyChart-Qlik extension legend settings](/img/_legend.jpg?raw=true)
 
-#### Axes
+### Axes
 Extension also provides you ability to set up axes - it's orientation, titles and labels.
 
 ![AnyChart-Qlik extension axes settings](/img/panel_02.jpg?raw=true)
