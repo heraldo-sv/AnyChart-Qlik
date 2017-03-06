@@ -6,14 +6,13 @@ Wrapping in the AnyChart JS viz library as Qlik Sense objects.
 
 ## Download and install
 
-You can download extension archive form [here](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip).
+You can download extension archive form [here](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip). Now that the extension has been downloaded, it needs to be installed into Qlik Sense.
 
 ### Installing Extension into Qlik Sense Desktop
 Find the .zip file that was downloaded, and unzip it. Open the unzipped folder to find another folder inside.
 Copy that folder and navigate to *documents/qlik/sense/extensions* and paste the folder there.
 
 ### Installing Extension into Qlik Sense Server
-Now that the extension has been downloaded, it needs to be installed into Qlik Sense.
 Go to your QMC and, in the navigation menu on the left, under “Manage Resources,” click “Extensions.”
 Then, in the action bar at the bottom of the screen, click “Import.” Click “Choose File” in the popup and navigate to the folder that was downloaded in step 1, select it, then click “Import.”
 
