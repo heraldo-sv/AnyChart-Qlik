@@ -40,7 +40,10 @@ define(["./charts-definition"], function() {
             for (i in ns) {
               palette = ns[i];
               if (Array.isArray(palette)) {
-                label = i.charAt(0).toUpperCase() + i.slice(1);
+                if(i == 'defaultPalette')
+                  label = '- default -';
+                else
+                  label = i.charAt(0).toUpperCase() + i.slice(1);
                 palettes.push({label: label, value: i});
               }
             }

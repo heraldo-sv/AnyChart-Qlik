@@ -61,6 +61,7 @@ var chartPresets = [
     value: chartTypes.LINE_CHART,
     ctor: "line",
     isSeriesBased: true,
+    isVertical: false,
     defaultSubtype: chartSubtypes.LINE_CHART,
     subtypes: [
       {value: chartSubtypes.LINE_CHART, label: "Line Chart", seriesType: "line"},
@@ -76,6 +77,7 @@ var chartPresets = [
     value: chartTypes.AREA_CHART,
     ctor: "area",
     isSeriesBased: true,
+    isVertical: false,
     defaultSubtype: chartSubtypes.AREA_CHART,
     subtypes: [
       {
@@ -136,6 +138,7 @@ var chartPresets = [
     value: chartTypes.COLUMN_CHART,
     ctor: "column",
     isSeriesBased: true,
+    isVertical: false,
     defaultSubtype: chartSubtypes.COLUMN_CHART,
     subtypes: [
       {
@@ -172,6 +175,7 @@ var chartPresets = [
     value: chartTypes.BAR_CHART,
     ctor: "bar",
     isSeriesBased: true,
+    isVertical: true,
     defaultSubtype: chartSubtypes.BAR_CHART,
     subtypes: [
       {
@@ -209,6 +213,7 @@ var chartPresets = [
     value: chartTypes.SCATTER_CHART,
     ctor: "scatter",
     isSeriesBased: true,
+    isVertical: false,
     defaultSubtype: chartSubtypes.MARKER_SCATTER_CHART,
     subtypes: [
       {value: chartSubtypes.MARKER_SCATTER_CHART, label: "Marker Chart", seriesType: "marker"},

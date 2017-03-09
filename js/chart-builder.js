@@ -62,6 +62,8 @@ var ACBuilder = function() {
 
   var checkProperties = function(view, layout) {
     var consistency = true;
+    var xAxisOrientation = null;
+    var yAxisOrientation = null;
     var subtype = null;
     var seriesTypes = [];
     var i, key, value;
@@ -79,8 +81,8 @@ var ACBuilder = function() {
       }
     }
 
-    /******** Check series types ***/
     if (typePreset.isSeriesBased) {
+      /******** Check series types ***/
       var hc = layout.qHyperCube;
       for (i = 0; i < hc.qMeasureInfo.length; i++) {
         var settings = hc.qMeasureInfo[i].series;
@@ -99,11 +101,26 @@ var ACBuilder = function() {
           }
         }
       }
+
+      /****** Check axis settings for vertical charts ***/
+      // Swap axis orientation for vertical charts
+      var xAxisOpt = layout.opt.chart.xAxisCALL_orientationCALL;
+      var yAxisOpt = layout.opt.chart.yAxisCALL_orientationCALL;
+      if(typePreset.isVertical) {
+        xAxisOrientation = (xAxisOpt == "bottom" || xAxisOpt == "top") ? "left" : xAxisOpt;
+        yAxisOrientation = (yAxisOpt == "left" || yAxisOpt == "right") ? "bottom" : yAxisOpt;
+      } else {
+        xAxisOrientation = (xAxisOpt == "left" || xAxisOpt == "right") ? "bottom" : xAxisOpt;
+        yAxisOrientation = (yAxisOpt == "bottom" || yAxisOpt == "top") ? "left" : yAxisOpt;
+      }
     }
 
     if (!consistency) {
       view.backendApi.getProperties().then(function(reply) {
         reply.opt.chartSubtype = subtype ? subtype : reply.opt.chartSubtype;
+        reply.opt.chart.xAxisCALL_orientationCALL = xAxisOrientation;
+        reply.opt.chart.yAxisCALL_orientationCALL = yAxisOrientation;
+
         if (seriesTypes.length) {
           for (i in reply.qHyperCubeDef.qMeasures) {
             if (seriesTypes.indexOf(Number(i)) != -1) {
