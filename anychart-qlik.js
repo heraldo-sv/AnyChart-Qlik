@@ -27,8 +27,9 @@ define([
         //property panel
         definition: pDef,
 
-        snapshot: {
-          canTakeSnapshot: true
+        support : {
+          snapshot: true,
+          export: true
         },
 
         paint: function($element, layout) {
