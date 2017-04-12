@@ -243,7 +243,7 @@ define(["./charts-definition"], function() {
         defaultValue: true
       },
       labelsFormatter: {
-        ref: "opt.chart.xAxisCALL_labelsCALL_textFormatterCALL",
+        ref: "opt.chart.xAxisCALL_labelsCALL_formatCALL",
         type: "string",
         defaultValue: "{%Value}{decimalsCount:10}",
         show: function(d) {
@@ -319,7 +319,7 @@ define(["./charts-definition"], function() {
         defaultValue: true
       },
       labelsFormatter: {
-        ref: "opt.chart.yAxisCALL_labelsCALL_textFormatterCALL",
+        ref: "opt.chart.yAxisCALL_labelsCALL_formatCALL",
         type: "string",
         defaultValue: "{%Value}{decimalsCount:10}",
         show: function(d) {

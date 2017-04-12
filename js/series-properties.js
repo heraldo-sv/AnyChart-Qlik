@@ -41,7 +41,7 @@ define([], function() {
           }
         },
         seriesLabelsFormatter: {
-          ref: "qDef.series.labelsCALL_textFormatterCALL",
+          ref: "qDef.series.labelsCALL_formatCALL",
           type: "string",
           label: "Labels formatter",
           defaultValue: "{%Value}{decimalsCount:2}",
@@ -60,7 +60,7 @@ define([], function() {
           }
         },
         pieLabelsFormatter: {
-          ref: "qDef.opt.pie.labelsCALL_textFormatterCALL",
+          ref: "qDef.opt.pie.labelsCALL_formatCALL",
           type: "string",
           label: "Labels formatter",
           defaultValue: "{%PercentValue}{decimalsCount:1,zeroFillDecimals:true}%",
