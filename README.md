@@ -112,5 +112,5 @@ AnyChart Extension allows to configure axes: orientation, titles and labels and 
 ## License
 
 [© AnyChart.com - JavaScript charts](https://www.anychart.com). All rights reserved.
-[![Analytics](https://ga-beacon.appspot.com/UA-228820-4/README.md)](https://github.com/igrigorik/ga-beacon?pixel&useReferer)
+[![Analytics](https://ga-beacon.appspot.com/UA-228820-4/README.md?pixel&useReferer)](https://github.com/igrigorik/ga-beacon)
 
