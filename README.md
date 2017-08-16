@@ -4,7 +4,7 @@
 
 AnyChart JavaScript Visualization Library [extension](https://help.qlik.com/en-US/sense-developer/3.2/Subsystems/Extensions/Content/custom-objects.htm) for [Qlik Sense](http://www.qlik.com/us/products/qlik-sense).
 
-[AnyChart](http://www.anychart.com/) is a flexible JavaScript (HTML5) based solution that allows developers to embed interactive and great looking charts and dashboards into any web, standalone or mobile project. AnyChart products include massive out-of-the-box capabilities, combined with the flexibility and the simplicity.
+[AnyChart](https://www.anychart.com/) is a flexible JavaScript (HTML5) based solution that allows developers to embed interactive and great looking charts and dashboards into any web, standalone or mobile project. AnyChart products include massive out-of-the-box capabilities, combined with the flexibility and the simplicity.
 
 Qlik Sense is a self-service data visualization and discovery application designed for all business users whether, individuals, groups, or organizations. With Qlik Sense you can analyze data and make data discoveries on your own. You can share knowledge and analyze data in groups and across organizations. Qlik Sense lets you ask and answer your own questions and follow your own paths to insight, as well as enabling you and your colleagues to reach decisions collaboratively.
 
@@ -62,7 +62,7 @@ Each series can be configured individually. You can set series name, markers and
 
 ![AnyChart-Qlik extension line chart](/img/panel_01.jpg?raw=true)
 
-Read more about [AnyChart Text Formatters](http://docs.anychart.com/latest/Common_Settings/Text_Formatters).
+Read more about [AnyChart Text Formatters](https://docs.anychart.com/latest/Common_Settings/Text_Formatters).
 
 For every series you can choose series type different than chart's default series type.
 
@@ -112,5 +112,5 @@ AnyChart Extension allows to configure axes: orientation, titles and labels and 
 ## License
 
 [© AnyChart.com - JavaScript charts](https://www.anychart.com). All rights reserved.
-[![Analytics](https://ga-beacon.appspot.com/UA-228820-4/README.md?pixel&useReferer)](https://github.com/igrigorik/ga-beacon)
+[![Analytics](https://ga-beacon.appspot.com/UA-228820-4/Qlik?pixel&useReferer)](https://github.com/igrigorik/ga-beacon)
 
