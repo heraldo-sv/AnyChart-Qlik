@@ -393,7 +393,7 @@ define(["./charts-definition"], function() {
         ref: "opt.chart.creditsCALL_enabledCALL",
         label: "Credits",
         type: "boolean",
-        defaultValue: true,
+        defaultValue: false,
         show: function(d) {
           return d.opt.anychart.licenseKeyCALL;
         }

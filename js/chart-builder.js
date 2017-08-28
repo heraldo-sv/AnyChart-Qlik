@@ -247,8 +247,11 @@ var ACBuilder = function() {
     // Applying gobal settings
     for (key in anychartSettings) {
       value = anychartSettings[key];
-      if (value != undefined)
+      if (key == 'licenseKeyCALL' && !value) {
+        // do nothing
+      } else if (value != void 0) {
         getset(anychart, key, value);
+      }
     }
 
     for (key in chartSettings) {
