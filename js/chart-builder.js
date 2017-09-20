@@ -44,9 +44,13 @@ var ACBuilder = function() {
           if (opt_dryRun) {
             success = !!target[name];
           } else {
+            if (typeof opt_value == 'string' && (new RegExp(/^function\s?\(\)\s?\{.+\};?$/)).test(opt_value)) {
+              opt_value = eval('(function(){return ' + opt_value + '})()');
+            }
+
             target = useCall ?
                 target[name](opt_value) :
-                goog.isDef(opt_value) ? target[name] = opt_value : target[name];
+                opt_value != 'undefined' ? target[name] = opt_value : target[name];
 
             str = str ? str + "." : "";
             str += name + "(" + opt_value + ")";
@@ -173,8 +177,15 @@ var ACBuilder = function() {
 
     var data = matrix.map(function(d1) {
       dimIndexes.push(d1[0]['qElemNumber']);
+
       return d1.map(function(d2) {
-        return Number(d2['qNum']) || (!isNaN(Number(d2['qText'])) ? Number(d2['qText']) : d2['qText']);
+        var num1 = Number(d2['qNum']);
+        var num2 = Number(d2['qText']);
+        var date = new Date(d2['qText']);
+        var time = date.getTime();
+        if (num1 && isNaN(num2) && time)
+          num1 = time;
+        return num1 || (!isNaN(num2) ? num2 : d2['qText']);
       });
     });
 
