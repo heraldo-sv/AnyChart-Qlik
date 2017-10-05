@@ -103,14 +103,17 @@ AnyChart Extension allows to configure axes: orientation, titles and labels and 
 * [AnyChart Licensing](https://www.anychart.com/buy/)
 * [AnyChart Support](https://www.anychart.com/support/)
 * [Report Issues](https://github.com/AnyChart/AnyChart-Qlik/issues)
-* [AnyChart Playground](http://playground.anychart.com)
+* [AnyChart Playground](https://playground.anychart.com)
 * [AnyChart Documentation](https://docs.anychart.com)
 * [AnyChart API Reference](https://api.anychart.com)
 * [AnyChart Sample Solutions](https://www.anychart.com/solutions/)
 * [AnyChart Integrations](https://www.anychart.com/integrations/)
 
 ## License
+AnyChart Qlik plugin sample includes two parts:
+- code of the plugin sample that allows to use Javascript library (in this case, AnyChart) with Qlik platform. You can use, edit, modify it, use it with other Javascript libraries without any restrictions. It is released under [Apache 2.0 License](https://github.com/AnyChart/AnyChart-Qlik/blob/master/LICENSE).
+- AnyChart JavaScript library. It is released under Commercial license. You can test this plugin with the trial version of AnyChart. Our trial version is not limited by time and doesn't contain any feature limitations. Check details [here](https://www.anychart.com/buy/)
 
-[© AnyChart.com - JavaScript charts](https://www.anychart.com). All rights reserved.
+If you have any questions regarding licensing - please contact us. <sales@anychart.com>
 [![Analytics](https://ga-beacon.appspot.com/UA-228820-4/Plugins/Qlik?pixel&useReferer)](https://github.com/igrigorik/ga-beacon)
 
