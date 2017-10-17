@@ -4,8 +4,8 @@ define([], function() {
     // Otherwise they are ignored.
 
     // enabled: true,
-    // text: "Hello world",
-    // url: "http://www.busy-bee.ru",
+    // text: "",
+    // url: "",
     // logoSrc: "",
 
     licenseKey: ""
