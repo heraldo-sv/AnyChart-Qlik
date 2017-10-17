@@ -2,15 +2,14 @@ define([
       "jquery",
       "./js/properties",
       "js/qlik",
-
-      "css!./lib/anychart-ui.min.css",
       "./lib/anychart-bundle.min",
-      "./js/chart-builder"
+      "./js/chart-builder",
+      "css!./lib/anychart-ui.min.css"
     ],
-    function($, pDef, qlik) {
+    function($, pDef, qlik, bundle, chartBuilder) {
       'use strict';
 
-      var builder = new ChartBuilder();
+      var builder = new chartBuilder();
       var editor = null;
       var complete = false;
 
