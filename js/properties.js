@@ -1,5 +1,4 @@
-define(['./series-properties', './chart-properties'
-], function(seriesProperties, chartProperties) {
+define([], function() {
 
   var dimensions = {
     uses: "dimensions",
@@ -10,16 +9,40 @@ define(['./series-properties', './chart-properties'
   var measures = {
     uses: "measures",
     min: 1,
-    max: 6,
-    items: seriesProperties
-  };
-
-  var settings = {
-    uses : "settings"
+    max: 10
   };
 
   var sorting = {
     uses: "sorting"
+  };
+
+  var settings = {
+    uses: "settings"
+  };
+
+  var chartEditor = {
+    type: "items",
+    label: "Chart",
+    items: {
+      chartEditor: {
+        ref: "anychart.chartEditor",
+        component: "buttongroup",
+        type: "string",
+        options: [{
+          value: "true",
+          label: "Run Chart Editor",
+          tooltip: "Run Chart Editor to customize chart"
+        }],
+        defaultValue: "false"
+      },
+      code: {
+        component: "textarea",
+        rows: 7,
+        maxlength: 4096,
+        ref: "anychart.code",
+        show: false
+      }
+    }
   };
 
   return {
@@ -29,8 +52,8 @@ define(['./series-properties', './chart-properties'
       dimensions: dimensions,
       measures: measures,
       sorting: sorting,
-      chart: chartProperties,
-      settings: settings
+      settings: settings,
+      editor: chartEditor
     }
   };
 });
