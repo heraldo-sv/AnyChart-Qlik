@@ -3,7 +3,7 @@ define([], function() {
   var dimensions = {
     uses: "dimensions",
     min: 1,
-    max: 1
+    max: 10
   };
 
   var measures = {
@@ -40,7 +40,14 @@ define([], function() {
         rows: 7,
         maxlength: 4096,
         ref: "anychart.code",
-        show: false
+        // show: false
+      },
+      model: {
+        component: "textarea",
+        rows: 7,
+        maxlength: 4096,
+        ref: "anychart.model",
+        // show: false
       }
     }
   };
