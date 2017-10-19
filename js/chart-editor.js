@@ -13,9 +13,10 @@ define(["./../js/data-adapter"],
             complete = false;
 
             var data = dataAdapter.prepareData(view, layout);
-            // console.log(data[0]);
+            var model = layout.anychart.model;
 
-            editor.data(data);
+            editor.data({data: data, setId: "qlikData"});
+            editor.deserializeModel(model);
             editor.visible(true);
 
             editor.listenOnce('complete', function(evt) {

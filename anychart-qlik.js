@@ -7,7 +7,8 @@ define([
       "./js/chart-editor",
 
       "./lib/anychart-bundle.min",
-      "css!./lib/anychart-ui.min.css"
+      "css!./lib/anychart-ui.min.css",
+      "css!./lib/fonts.css"
     ],
     function($, pDef, qlik, chartBuilder, chartEditor) {
       'use strict';
