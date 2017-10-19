@@ -10,6 +10,7 @@ define(["./../js/data-adapter"],
             editor = anychart['ui']['editor']();
             editor['steps']()['prepareData'](false);
             editor['renderAsDialog']();
+            editor['steps']()['visualAppearance']()['contextMenu'](false);
             complete = false;
 
             var data = dataAdapter.prepareData(view, layout);
