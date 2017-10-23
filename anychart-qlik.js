@@ -7,6 +7,7 @@ define([
       "./js/chart-editor",
 
       "./lib/anychart-bundle.min",
+      "./lib/proj4",
       "css!./lib/anychart-ui.min.css",
       "css!./lib/fonts.css"
     ],
