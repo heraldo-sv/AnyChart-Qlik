@@ -7,30 +7,26 @@ define(["./../credits", "./../js/data-adapter"],
            * 'chartId' : {'chart': Object, 'selected': integer[]}
            */
         };
-
-        this.updateSelections = function(id) {
-          for (var s = 0; s < _static[id]['chart']['getSeriesCount'](); s++) {
-            _static[id]['chart']['getSeriesAt'](s)['select'](_static[id]['selected']);
-          }
-        };
+        
 
         this.buildChart = function(view, layout) {
           var code = layout.anychart.code;
           if (!code) return null;
 
           var self = this;
-          var id = layout.qInfo.qId;
+          var chartId = layout.qInfo.qId;
           var chart;
 
-          if (!_static[id]) _static[id] = {chart: null};
+          if (!_static[chartId]) _static[chartId] = {chart: null};
 
-          _static[id].selected = [];
+          _static[chartId]['selected'] = [];
 
-          if (_static[id]['chart'] && typeof _static[id]['chart']['dispose'] == 'function') {
+          if (_static[chartId]['chart'] && typeof _static[chartId]['chart']['dispose'] == 'function') {
             anychart['utils']['hideTooltips']();
-            _static[id]['chart'].dispose();
+            _static[chartId]['chart'].dispose();
           }
 
+          // Building chart from chart editor's builded code
           var codeSplit = code.split('var rawData=[/*Add your data here*/];'); // todo: do better
           if (codeSplit.length == 2) {
 
@@ -41,7 +37,7 @@ define(["./../credits", "./../js/data-adapter"],
             var code2 = '(function(){ return function(chart, rawData){' + codeSplit[1] + '}})();';
 
             // Create chart instance
-            chart = _static[id]['chart'] = eval(code1);
+            chart = _static[chartId]['chart'] = eval(code1);
 
             if (!chart) return null;
 
@@ -68,66 +64,87 @@ define(["./../credits", "./../js/data-adapter"],
             // Apply editor's settings
             var code2func = eval(code2);
 
-            var data = dataAdapter.prepareData(view, layout);
-            code2func.apply(null, [chart, data]);
+            var preparedData = dataAdapter.prepareData(view, layout);
+            code2func.apply(null, [chart, preparedData.data]);
 
           } else
             return null;
 
-          // Selections processing
-          // var isSeriesBased = typeof chart['getSeriesCount'] == 'function';
-          // var chartType = chart['getType']();
-          //
-          // chart['interactivity']()['selectionMode']('none');
-          //
-          // var pointClicked = false;
-          // chart['listen']("mouseDown", function() {
-          //   if (!pointClicked) {
-          //     chart['dispatchEvent']("pointMouseDown");
-          //   }
-          //   pointClicked = false;
-          // });
-          //
-          // var dimIndexes = [];
-          // chart['listen']("pointMouseDown", function(evt) {
-          //   if (evt.pointIndex != undefined) {
-          //     pointClicked = true;
-          //
-          //     view.selectValues(0, [dimIndexes[evt.pointIndex]], true);
-          //
-          //     var index = _static[id]['selected'].indexOf(evt.pointIndex);
-          //     if (index == -1) {
-          //       _static[id]['selected'].push(evt.pointIndex);
-          //     } else {
-          //       _static[id]['selected'].splice(index, 1);
-          //     }
-          //   }
-          //
-          //   if (isSeriesBased)
-          //     self.updateSelections(id);
-          // });
-          //
-          // view.clearSelectedValues = function() {
-          //   _static[id]['selected'] = [];
-          //   if (isSeriesBased)
-          //     self.updateSelections(id);
-          //
-          //   else {
-          //     switch (chartType) {
-          //       case 'pie':
-          //         chart['explodeSlices'](false);
-          //         break;
-          //       default:
-          //         console.log("Process me!", chartType);
-          //         break;
-          //     }
-          //   }
-          // };
+          // Qlik style interactivity initialization
+          chart['interactivity']()['selectionMode']('none');
+
+          _static[chartId]['pointClicked'] = false;
+          chart['listen']("mouseDown", function() {
+            if (!_static[chartId]['pointClicked']) {
+              chart['dispatchEvent']("pointMouseDown");
+            }
+            _static[chartId]['pointClicked'] = false;
+          });
+
+          chart['listen']("pointMouseDown", function(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+
+            if (evt.pointIndex != undefined) {
+              _static[chartId]['pointClicked'] = true;
+
+              if (layout.anychart.field) {
+                for (var i = 0; i < preparedData.dimensions.length; i++) {
+                  if (preparedData.dimensions[i]['id'] == layout.anychart.field) {
+                    view.selectValues(i, [preparedData.dimensions[i]['indexes'][evt.pointIndex]], true);
+                    break;
+                  }
+                }
+              }
+            
+              var index = _static[chartId]['selected'].indexOf(evt.pointIndex);
+              if (index == -1) {
+                _static[chartId]['selected'].push(evt.pointIndex);
+              } else {
+                _static[chartId]['selected'].splice(index, 1);
+              }
+            }
+
+            self.updateChartSelections(chartId);
+          });
+
+          view.clearSelectedValues = function() {
+            _static[chartId]['selected'] = [];
+            self.updateChartSelections(chartId);
+          };
 
           // debug
           //window['chart'] = chart;
 
           return chart;
+        };
+
+        this.updateChartSelections = function(chartId) {
+          var chart = _static[chartId]['chart'];
+          var selected = _static[chartId]['selected'];
+
+          if (typeof chart['getSeriesCount'] == 'function') {
+            for (var s = 0; s < chart['getSeriesCount'](); s++) {
+              _static[chartId]['chart']['getSeriesAt'](s)['select'](selected);
+            }
+
+          } else if (typeof chart['select'] == 'function') {
+            _static[chartId]['chart']['select'](selected);
+
+          } else {
+            var chartType = chart['getType']();
+            switch (chartType) {
+              case 'pie':
+                chart['explodeSlices'](false);
+                for (var i = 0; i < selected.length; i++) {
+                  chart['explodeSlice'](selected[i]);
+                }
+                break;
+              default:
+                console.log("Unprocessed chart type " + chartType + " in updateChartSelections()");
+                break;
+            }
+          }
         };
       };
     });

@@ -13,8 +13,9 @@ define(["./../credits", "./../js/data-adapter"],
             editor['steps']()['visualAppearance']()['contextMenu'](false);
             complete = false;
 
-            var data = dataAdapter.prepareData(view, layout);
-            var model = layout.anychart.model;
+            var res = dataAdapter.prepareData(view, layout);
+            var data = res.data;
+            var serializedModel = layout.anychart.model;
 
             editor['data']({data: data, setId: "qlikData"});
 
@@ -36,7 +37,7 @@ define(["./../credits", "./../js/data-adapter"],
             }
             editor['setDefaults'](defaults);
 
-            editor['deserializeModel'](model);
+            editor['deserializeModel'](serializedModel);
             editor['visible'](true);
 
             editor.listenOnce('complete', function(evt) {
@@ -60,7 +61,9 @@ define(["./../credits", "./../js/data-adapter"],
 
         var closeEditor = function(view, code) {
           if (editor) {
-            var model = editor['serializeModel']();
+            var serializedModel = editor['serializeModel']();
+            var field = editor['getModel']()['getValue']([['dataSettings'], 'field']);
+
             editor['visible'](false);
             editor['removeAllListeners']();
             editor['dispose']();
@@ -70,7 +73,8 @@ define(["./../credits", "./../js/data-adapter"],
               reply.anychart.chartEditor = "false";
               if (code) {
                 reply.anychart.code = code;
-                reply.anychart.model = model;
+                reply.anychart.model = serializedModel;
+                reply.anychart.field = field;
               }
               view.backendApi.setProperties(reply);
             });

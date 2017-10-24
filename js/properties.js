@@ -36,17 +36,22 @@ define([], function() {
         defaultValue: "false"
       },
       code: {
+        ref: "anychart.code",
         component: "textarea",
         rows: 7,
         maxlength: 4096,
-        ref: "anychart.code",
         show: false
       },
       model: {
+        ref: "anychart.model",
         component: "textarea",
         rows: 7,
         maxlength: 4096,
-        ref: "anychart.model",
+        show: false
+      },
+      field: {
+        ref: "anychart.field",
+        type: "string",
         show: false
       }
     }

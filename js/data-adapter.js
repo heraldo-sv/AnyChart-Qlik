@@ -1,39 +1,31 @@
 define([], function() {
   return {
     prepareData: function(view, layout) {
-      var data = [];
+      var result = {data: [], dimensions: []};
+
       var hc = layout.qHyperCube;
-      var matrix = hc.qDataPages[0].qMatrix;
       var i;
 
       var fieldNames = [];
       for (i = 0; i < hc.qDimensionInfo.length; i++) {
-        fieldNames.push("dim_" + hc.qDimensionInfo[i].cId)
+        var dimId = "dim_" + hc.qDimensionInfo[i].cId;
+        fieldNames.push(dimId);
+        result.dimensions.push({'number': i, 'id': dimId, 'indexes': []});
       }
 
       for (i = 0; i < hc.qMeasureInfo.length; i++) {
-        fieldNames.push("meas_" + hc.qMeasureInfo[i].cId)
+        fieldNames.push("meas_" + hc.qMeasureInfo[i].cId);
       }
 
-      // console.log(hc);
-      // console.log(matrix);
-
+      // var matrix = hc.qDataPages[0].qMatrix;
       // data = matrix.map(function(d1) {
-      //   //dimIndexes.push(d1[0]['qElemNumber']);
-      //
       //   return d1.map(function(d2) {
-      //     var num1 = Number(d2['qNum']);
-      //     var num2 = Number(d2['qText']);
-      //     var date = new Date(d2['qText']);
-      //     var time = date.getTime();
-      //     if (num1 && isNaN(num2) && time)
-      //       num1 = time;
-      //     return num1 || (!isNaN(num2) ? num2 : d2['qText']);
+      //     return d2['qNum'];
       //   });
       // });
 
       view.backendApi.eachDataRow(function(index, row) {
-        //if (index == 1) console.log(row);
+        // if (index == 1) console.log(index, row);
 
         var processedRow = {};
         for (var j = 0; j < row.length; j++) {
@@ -41,7 +33,7 @@ define([], function() {
           if (row[j]['qState'] == 'O') {
             // dimension
             value = row[j]['qText'];
-
+            result.dimensions[j]['indexes'].push(row[j]["qElemNumber"]);
           } else {
             // measure
             value = row[j]['qIsNull'] ?
@@ -52,12 +44,12 @@ define([], function() {
           processedRow[fieldNames[j]] = value;
         }
 
-        data.push(processedRow);
+        result.data.push(processedRow);
       });
 
-      // console.log(data[0]);
+      // console.log(result.data[1]);
 
-      return data;
+      return result;
     }
   };
 });
