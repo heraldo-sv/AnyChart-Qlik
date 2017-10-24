@@ -95,8 +95,8 @@ AnyChart offers best-in-class charting solution and we are working hard on addin
 
 #### General Improvements
 * Brand new chart building interface using AnyChart Chart Editor
+* Ability to add multiple measures
 * Ability to setup license settings on the plugin level
-* Ability go add multiple measures
 
 #### New Chart Types
 * Heat Map
