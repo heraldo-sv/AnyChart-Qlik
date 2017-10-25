@@ -91,12 +91,15 @@ define(["./../credits", "./../js/data-adapter"],
               if (layout.anychart.field) {
                 for (var i = 0; i < preparedData.dimensions.length; i++) {
                   if (preparedData.dimensions[i]['id'] == layout.anychart.field) {
-                    view.selectValues(i, [preparedData.dimensions[i]['indexes'][evt.pointIndex]], true);
+                    var qElemNumber = preparedData.dimensions[i]['indexes'][evt.pointIndex];
+                    if (typeof qElemNumber == 'number') {
+                        view.selectValues(i, [qElemNumber], true);
+                    }
                     break;
                   }
                 }
               }
-            
+
               var index = _static[chartId]['selected'].indexOf(evt.pointIndex);
               if (index == -1) {
                 _static[chartId]['selected'].push(evt.pointIndex);

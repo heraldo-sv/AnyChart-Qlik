@@ -25,15 +25,18 @@ define([], function() {
       // });
 
       view.backendApi.eachDataRow(function(index, row) {
-        // if (index == 1) console.log(index, row);
+        // if (index == 3) console.log("Normal cell", index, row);
 
         var processedRow = {};
         for (var j = 0; j < row.length; j++) {
+          // if (row[j]['qIsOtherCell']) console.log("Other cell", index, row);
+
           var value;
-          if (row[j]['qState'] == 'O') {
+          if (row[j]['qState'] == 'O' || row[j]['qIsOtherCell']) {
             // dimension
             value = row[j]['qText'];
             result.dimensions[j]['indexes'].push(row[j]["qElemNumber"]);
+
           } else {
             // measure
             value = row[j]['qIsNull'] ?
@@ -47,7 +50,8 @@ define([], function() {
         result.data.push(processedRow);
       });
 
-      // console.log(result.data[1]);
+      // console.log(result.dimensions[0].indexes);
+      // console.log(result.data[result.data.length - 1]);
 
       return result;
     }
