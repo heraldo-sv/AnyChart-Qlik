@@ -9,7 +9,8 @@ define([
       "./lib/anychart-bundle.min",
       "./lib/proj4",
       "css!./lib/anychart-ui.min.css",
-      "css!./lib/fonts.css"
+      "css!./lib/fonts.css",
+      "css!./style.css"
     ],
     function($, pDef, qlik, chartBuilder, chartEditor) {
       'use strict';
@@ -58,8 +59,13 @@ define([
               chart['container'](containerId);
               chart['draw']();
             } else {
-              var str = 'ANYCHART<br>' +
-                  'Please configure chart using Chart Editor!';
+              var str = '<div class="intro-wrapper"><div class="intro">' +
+                  '<h1>Thank you for using AnyChart Qlik Sense Extension!</h1>' +
+                  'Now you can start configuring your chart.<br><br>' +
+                  'To run Chart Editor, please click on "Run Chart Editor" button in the Appearance Tab:' +
+                  '<div class="screenshot screenshot-1"></div><br>' +
+                  'Also you can use multiple measures and dimensions. Please use "Dimensions", "Measures" and "Sorting" tabs to setup your data:' +
+                  '<div class="screenshot screenshot-2"></div></div></div>';
 
               $element.html(str);
             }

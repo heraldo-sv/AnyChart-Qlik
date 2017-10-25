@@ -16,13 +16,9 @@ define([], function() {
     uses: "sorting"
   };
 
-  var settings = {
-    uses: "settings"
-  };
-
   var chartEditor = {
     type: "items",
-    label: "Chart",
+    label: "Chart Editor",
     items: {
       chartEditor: {
         ref: "anychart.chartEditor",
@@ -57,6 +53,13 @@ define([], function() {
     }
   };
 
+  var appearance = {
+    uses: "settings",
+    items: {
+      chartEditor: chartEditor
+    }
+  };
+
   return {
     type: "items",
     component: "accordion",
@@ -64,8 +67,7 @@ define([], function() {
       dimensions: dimensions,
       measures: measures,
       sorting: sorting,
-      settings: settings,
-      editor: chartEditor
+      appearance: appearance
     }
   };
 });
