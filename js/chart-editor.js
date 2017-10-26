@@ -49,11 +49,12 @@ define(["./../credits", "./../js/data-adapter"],
                 'wrapper': '',
                 'container': ''
               });
+
               closeEditor(view, code);
             });
 
-            editor.listenOnce('close', function() {
-              if (!complete)
+            editor.listen('close', function(evt) {
+              if (!complete && evt.target == editor)
                 closeEditor(view, null);
             });
           }

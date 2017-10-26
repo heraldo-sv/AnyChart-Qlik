@@ -128,11 +128,11 @@ define(["./../credits", "./../js/data-adapter"],
 
           if (typeof chart['getSeriesCount'] == 'function') {
             for (var s = 0; s < chart['getSeriesCount'](); s++) {
-              _static[chartId]['chart']['getSeriesAt'](s)['select'](selected);
+              chart['getSeriesAt'](s)['select'](selected);
             }
 
           } else if (typeof chart['select'] == 'function') {
-            _static[chartId]['chart']['select'](selected);
+            chart['select'](selected);
 
           } else {
             var chartType = chart['getType']();
@@ -142,6 +142,9 @@ define(["./../credits", "./../js/data-adapter"],
                 for (var i = 0; i < selected.length; i++) {
                   chart['explodeSlice'](selected[i]);
                 }
+                break;
+              case 'stock':
+                // do nothing - stock chart has not interactivity now
                 break;
               default:
                 console.log("Unprocessed chart type " + chartType + " in updateChartSelections()");
