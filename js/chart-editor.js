@@ -17,7 +17,7 @@ define(["./../credits", "./../js/data-adapter"],
             var data = res.data;
             var serializedModel = layout.anychart.model;
 
-            editor['data']({data: data, setId: "qlikData"});
+            editor['data']({'data': data, 'setId': "qlikData"});
 
             var defaults = [{'key': [['chart'], ['settings'], 'contextMenu().enabled()'], 'value': false}];
             if (credits.licenseKey && typeof credits.licenseKey === 'string') {
@@ -36,7 +36,6 @@ define(["./../credits", "./../js/data-adapter"],
                 defaults.push({'key': [['chart'], ['settings'], 'credits().logoSrc()'], 'value': credits.logoSrc});
             }
             editor['setDefaults'](defaults);
-
             editor['deserializeModel'](serializedModel);
             editor['visible'](true);
 

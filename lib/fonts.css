@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'anychart';
-  src:  url('fonts/anychart.eot?7r1vso');
-  src:  url('fonts/anychart.eot?7r1vso#iefix') format('embedded-opentype'),
-    url('fonts/anychart.ttf?7r1vso') format('truetype'),
-    url('fonts/anychart.woff?7r1vso') format('woff'),
-    url('fonts/anychart.svg?7r1vso#anychart') format('svg');
+  src:  url('fonts/anychart.eot?gy9wjh');
+  src:  url('fonts/anychart.eot?gy9wjh#iefix') format('embedded-opentype'),
+    url('fonts/anychart.ttf?gy9wjh') format('truetype'),
+    url('fonts/anychart.woff?gy9wjh') format('woff'),
+    url('fonts/anychart.svg?gy9wjh#anychart') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ac-github:before {
+  content: "\e9eb";
+}
+.ac-link-1:before {
+  content: "\e9ea";
+}
+.ac-link-2:before {
+  content: "\e9e9";
+}
+.ac-puzzle:before {
+  content: "\e9e1";
+}
+.ac-bullhorn:before {
+  content: "\e9b6";
+}
+.ac-users:before {
+  content: "\e9c1";
+}
+.ac-user-tie:before {
+  content: "\e9c7";
+}
+.ac-clipboard:before {
+  content: "\e9cb";
+}
+.ac-question1:before {
+  content: "\ea09";
+}
+.ac-info1:before {
+  content: "\ea0c";
+}
 .ac-logo:before {
   content: "\e900";
 }
@@ -750,22 +780,6 @@
 .ac-light-bulb:before {
   content: "\f0eb";
 }
-.ac-bullhorn:before {
-  content: "\e9b6";
+.ac-puzzle-o:before {
+  content: "\e9dd";
 }
-.ac-users:before {
-  content: "\e9c1";
-}
-.ac-user-tie:before {
-  content: "\e9c7";
-}
-.ac-clipboard:before {
-  content: "\e9cb";
-}
-.ac-question1:before {
-  content: "\ea09";
-}
-.ac-info1:before {
-  content: "\ea0c";
-}
-
