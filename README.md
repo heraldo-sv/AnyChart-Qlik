@@ -88,6 +88,43 @@ AnyChart Extension allows to configure axes: orientation, titles and labels and 
 
 ![AnyChart-Qlik extension axes settings](/img/panel_02.jpg?raw=true)
 
+## Roadmap
+AnyChart offers best-in-class charting solution and we are working hard on adding new features. Here is the list of new features that we have already included in our release schedule. We have a very aggressive roadmap and we are ready to listen to you - our customers - about new improvements. We would appreciate any suggestions - please contact us with your ideas.
+
+### Version 2.0 - Oct 2017
+
+#### General Improvements
+* Brand new chart building interface using AnyChart Chart Editor
+* Ability to add multiple measures
+* Ability to setup license settings on the plugin level
+
+#### New Chart Types
+* Heat Map
+* Box Chart
+* Stacked/Percent Stacked Area Chart
+* Stacked/Percent Stacked Bar Chart
+* Stacked/Percent Stacked Column Chart
+* Funnel Chart
+* Stock Chart
+* Choropleth Map
+* Bubble Map
+* Dot (Marker) Map
+
+#### New Features
+* Chart Title settings
+* Data Points Labels settings
+* Data Points Labels settings
+* Series settings
+* Grids settings
+
+
+### Version 2.1 - Nov 2017
+* Waterfall Chart
+* Mekko Chart
+* Tree Map Chart
+* Radar Chart
+* Polar Chart
+
 ## Contacts
 
 * Web: [www.anychart.com](https://www.anychart.com)
