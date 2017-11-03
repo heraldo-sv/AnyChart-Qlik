@@ -5,17 +5,19 @@ define([
       "js/qlik",
       "./js/chart-builder",
       "./js/chart-editor",
+      "./lib/proj4",
 
-      // "./lib/proj4",
-      "./lib/anychart-bundle.min",
       "./lib/themes-combined",
+      "./lib/anychart-bundle.min",
 
       "css!./lib/anychart-ui.min.css",
       "css!./lib/fonts.css",
       "css!./style.css"
     ],
-    function($, pDef, qlik, chartBuilder, chartEditor) {
+    function($, pDef, qlik, chartBuilder, chartEditor, proj4) {
       'use strict';
+
+      window['proj4'] = proj4;
 
       var builder = new chartBuilder();
       var editor = new chartEditor();
