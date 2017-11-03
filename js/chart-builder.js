@@ -144,10 +144,10 @@ define(["./../credits", "./../js/data-adapter"],
                 }
                 break;
               case 'stock':
-                // do nothing - stock chart has not interactivity now
+                // do nothing - stock chart has no interactivity for now
                 break;
               default:
-                console.log("Unprocessed chart type " + chartType + " in updateChartSelections()");
+                // console.log("Unprocessed chart type " + chartType + " in updateChartSelections()");
                 break;
             }
           }
