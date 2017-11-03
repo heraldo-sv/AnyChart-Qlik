@@ -178,7 +178,7 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 <table>
     <tr>
         <td><img src="http://static.anychart.com/cdn/images/qlik-screens/legend_1.jpg" alt="Legend Settings, 1 - AnyChart Extension for Qlik Sense"></td>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/legend_1.jpg" alt="Legend Settings, 2 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/legend_2.jpg" alt="Legend Settings, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
 
@@ -186,8 +186,8 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 
 <table>
     <tr>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/axes_1.jpg" alt="Axes and Grids, 1 - AnyChart Extension for Qlik Sense"></td>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/axes_2.jpg" alt="Axes and Grids, 2 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/axes_1.jpg?v=1" alt="Axes and Grids, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/axes_2.jpg?v=1" alt="Axes and Grids, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
 
