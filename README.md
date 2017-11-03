@@ -137,7 +137,7 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 
 <table>
     <tr>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/map_1.jpg" alt="Choropleth Map, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/map_3.jpg" alt="Choropleth Map, 1 - AnyChart Extension for Qlik Sense"></td>
         <td><img src="http://static.anychart.com/cdn/images/qlik-screens/map_2.jpg" alt="Choropleth Map, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
