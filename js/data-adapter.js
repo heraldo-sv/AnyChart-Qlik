@@ -1,20 +1,23 @@
 define([], function() {
   return {
     prepareData: function(view, layout) {
-      var result = {data: [], dimensions: []};
+      var result = {data: [], dimensions: [], fieldNames: {}};
 
       var hc = layout.qHyperCube;
       var i;
 
-      var fieldNames = [];
+      var fieldKeys = [];
       for (i = 0; i < hc.qDimensionInfo.length; i++) {
         var dimId = "dim_" + hc.qDimensionInfo[i].cId;
-        fieldNames.push(dimId);
+        fieldKeys.push(dimId);
         result.dimensions.push({'number': i, 'id': dimId, 'indexes': []});
+        result.fieldNames[dimId] = hc.qDimensionInfo[i]['qFallbackTitle'];
       }
 
       for (i = 0; i < hc.qMeasureInfo.length; i++) {
-        fieldNames.push("meas_" + hc.qMeasureInfo[i].cId);
+        var measId = "meas_" + hc.qMeasureInfo[i].cId;
+        fieldKeys.push(measId);
+        result.fieldNames[measId] = hc.qMeasureInfo[i]['qFallbackTitle'];
       }
 
       // var matrix = hc.qDataPages[0].qMatrix;
@@ -44,7 +47,7 @@ define([], function() {
                 row[j]['qNum'] == 'NaN' ? row[j]['qText'] : row[j]['qNum'];
           }
 
-          processedRow[fieldNames[j]] = value;
+          processedRow[fieldKeys[j]] = value;
         }
 
         result.data.push(processedRow);

@@ -1,4 +1,4 @@
-define(["./../credits", "./../js/data-adapter"],
+define(['./../credits', './../js/data-adapter'],
     function(credits, dataAdapter) {
       return function() {
 
@@ -17,7 +17,7 @@ define(["./../credits", "./../js/data-adapter"],
             var data = res.data;
             var serializedModel = layout.anychart.model;
 
-            editor['data']({'data': data, 'setId': "qlikData"});
+            editor['data']({'data': data, 'setId': 'qlikData', 'fieldNames': res.fieldNames});
 
             var defaults = [{'key': [['chart'], ['settings'], 'contextMenu().enabled()'], 'value': false}];
             if (credits.licenseKey && typeof credits.licenseKey === 'string') {
@@ -70,7 +70,7 @@ define(["./../credits", "./../js/data-adapter"],
             editor = null;
 
             view.backendApi.getProperties().then(function(reply) {
-              reply.anychart.chartEditor = "false";
+              reply.anychart.chartEditor = 'false';
               if (code) {
                 reply.anychart.code = code;
                 reply.anychart.model = serializedModel;
