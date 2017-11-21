@@ -9,7 +9,7 @@ define([], function() {
   var measures = {
     uses: "measures",
     min: 1,
-    max: 10
+    max: 1024
   };
 
   var sorting = {
