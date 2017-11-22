@@ -1,5 +1,5 @@
-define(['./../credits', './../js/data-adapter'],
-    function(credits, dataAdapter) {
+define(['./../config', './../js/data-adapter'],
+    function(config, dataAdapter) {
       return function() {
 
         var editor = null;
@@ -20,20 +20,20 @@ define(['./../credits', './../js/data-adapter'],
             editor['data']({'data': data, 'setId': 'qlikData', 'fieldNames': res.fieldNames});
 
             var defaults = [{'key': [['chart'], ['settings'], 'contextMenu().enabled()'], 'value': false}];
-            if (credits.licenseKey && typeof credits.licenseKey === 'string') {
-              defaults.push({'key': [['anychart'], 'licenseKey()'], 'value': String(credits.licenseKey)});
+            if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
+              defaults.push({'key': [['anychart'], 'licenseKey()'], 'value': String(config.credits.licenseKey)});
 
-              if (typeof credits.enabled === 'boolean')
-                defaults.push({'key': [['chart'], ['settings'], 'credits().enabled()'], 'value': credits.enabled});
+              if (typeof config.credits.enabled === 'boolean')
+                defaults.push({'key': [['chart'], ['settings'], 'credits().enabled()'], 'value': config.credits.enabled});
 
-              if (typeof credits.text === 'string')
-                defaults.push({'key': [['chart'], ['settings'], 'credits().text()'], 'value': credits.text});
+              if (typeof config.credits.text === 'string')
+                defaults.push({'key': [['chart'], ['settings'], 'credits().text()'], 'value': config.credits.text});
 
-              if (typeof credits.url === 'string')
-                defaults.push({'key': [['chart'], ['settings'], 'credits().url()'], 'value': credits.url});
+              if (typeof config.credits.url === 'string')
+                defaults.push({'key': [['chart'], ['settings'], 'credits().url()'], 'value': config.credits.url});
 
-              if (typeof credits.logoSrc === 'string')
-                defaults.push({'key': [['chart'], ['settings'], 'credits().logoSrc()'], 'value': credits.logoSrc});
+              if (typeof config.credits.logoSrc === 'string')
+                defaults.push({'key': [['chart'], ['settings'], 'credits().logoSrc()'], 'value': config.credits.logoSrc});
             }
             editor['setDefaults'](defaults);
             editor['deserializeModel'](serializedModel);
