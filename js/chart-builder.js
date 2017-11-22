@@ -1,5 +1,5 @@
-define(["./../credits", "./../js/data-adapter"],
-    function(credits, dataAdapter) {
+define(["./../config", "./../js/data-adapter"],
+    function(config, dataAdapter) {
       return function() {
 
         var _static = {
@@ -44,21 +44,21 @@ define(["./../credits", "./../js/data-adapter"],
             // Apply global settings
             chart['contextMenu'](false);
 
-            if (credits.licenseKey && typeof credits.licenseKey === 'string') {
-              anychart['licenseKey'](credits.licenseKey);
+            if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
+              anychart['licenseKey'](config.credits.licenseKey);
 
               var chartCredits = chart['credits']();
-              if (typeof credits.enabled === 'boolean')
-                chartCredits['enabled'](credits.enabled);
+              if (typeof config.credits.enabled === 'boolean')
+                chartCredits['enabled'](config.credits.enabled);
 
-              if (typeof credits.text === 'string')
-                chartCredits['text'](credits.text);
+              if (typeof config.credits.text === 'string')
+                chartCredits['text'](config.credits.text);
 
-              if (typeof credits.url === 'string')
-                chartCredits['url'](credits.url);
+              if (typeof config.credits.url === 'string')
+                chartCredits['url'](config.credits.url);
 
-              if (typeof credits.logoSrc === 'string')
-                chartCredits['logoSrc'](credits.logoSrc);
+              if (typeof config.credits.logoSrc === 'string')
+                chartCredits['logoSrc'](config.credits.logoSrc);
             }
 
             // Apply editor's settings

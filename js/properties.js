@@ -1,15 +1,15 @@
-define([], function() {
+define(["./../config"], function(config) {
 
   var dimensions = {
     uses: "dimensions",
     min: 1,
-    max: 10
+    max: config.settings.maxDimensions
   };
 
   var measures = {
     uses: "measures",
     min: 1,
-    max: 1024
+    max: config.settings.maxMeasures
   };
 
   var sorting = {
