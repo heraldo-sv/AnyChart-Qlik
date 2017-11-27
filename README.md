@@ -89,7 +89,7 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 <table>
     <tr>
         <td><img src="http://static.anychart.com/cdn/images/qlik-screens/pie_1.jpg" alt="Pie/Donut Chart, 1 - AnyChart Extension for Qlik Sense"></td>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/donut_1.jpg" alt="Pie/Donut Chart, 2 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/donut_1.png" alt="Pie/Donut Chart, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
 
