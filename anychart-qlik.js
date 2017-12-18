@@ -24,6 +24,7 @@ define([
       var editor = new chartEditor();
       var hCubeWidth = config.settings.maxDimensions + config.settings.maxMeasures;
       var hCubeInitialHeight = Math.floor(10000 / Math.min(10000, hCubeWidth));
+      var interactionState = null;
 
       return {
         initialProperties: {
@@ -51,6 +52,18 @@ define([
           $element.html('');
 
           if (dataAdapter.loadData(this, $element, layout, hCubeWidth)) {
+
+            if (this.options.interactionState != interactionState) {
+              anychart['graphics']['updateReferences']();
+              interactionState = this.options.interactionState;
+
+              // var stage = chart.container() ? chart.container().getStage() : null;
+              // if (stage) {
+              //   stage.listen('renderstart', function(){
+              //     anychart['graphics']['updateReferences']();
+              //   });
+              // }
+            }
 
             if (layout.anychart.chartEditor == "true" && this.options.interactionState == 2) {
               editor.openEditor(this, layout);

@@ -44,6 +44,8 @@ define(["./../config", "./../js/data-adapter"],
             // Apply global settings
             chart['contextMenu'](false);
 
+            // chart['xAxis']()['labels']()['position']('normal');
+
             if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
               anychart['licenseKey'](config.credits.licenseKey);
 

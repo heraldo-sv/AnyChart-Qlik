@@ -35,6 +35,9 @@ define(['./../config', './../js/data-adapter'],
               if (typeof config.credits.logoSrc === 'string')
                 defaults.push({'key': [['chart'], ['settings'], 'credits().logoSrc()'], 'value': config.credits.logoSrc});
             }
+
+            // defaults.push({'key': [['chart'], ['settings'], 'xAxis().labels().position()'], 'value': 'normal'});
+
             editor['setDefaults'](defaults);
             editor['deserializeModel'](serializedModel);
             editor['visible'](true);
