@@ -56,13 +56,6 @@ define([
             if (this.options.interactionState != interactionState) {
               anychart['graphics']['updateReferences']();
               interactionState = this.options.interactionState;
-
-              // var stage = chart.container() ? chart.container().getStage() : null;
-              // if (stage) {
-              //   stage.listen('renderstart', function(){
-              //     anychart['graphics']['updateReferences']();
-              //   });
-              // }
             }
 
             if (layout.anychart.chartEditor == "true" && this.options.interactionState == 2) {
