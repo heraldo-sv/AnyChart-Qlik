@@ -182,12 +182,49 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 </table>
 
 
-### Dot (Marker) Map
+### Dot Map (Marker Map) 
 
 <table>
     <tr>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/map_marker_1.jpg" alt="Dot (Marker) Map, 1 - AnyChart Extension for Qlik Sense"></td>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/map_marker_2.jpg" alt="Dot (Marker) Map, 2 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/map_marker_1.jpg" alt="Dot Map (Marker Map), 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/map_marker_2.jpg" alt="Dot Map (Marker Map), 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+
+### Bubble Map 
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/bubble_map_1.png" alt="Bubble Map, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/bubble_map_2.png" alt="Bubble Map, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+### Radar Chart 
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/radar_1.png" alt="Radar Chart, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/radar_2.png" alt="Radar Chart, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+### Polar Chart 
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/polar_1.png" alt="Polar Chart, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/polar_2.png" alt="Polar Chart, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+### Treemap Chart 
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/treemap_1.png" alt="Treemap Chart, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/treemap_2.png" alt="Treemap Chart, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
 
@@ -230,16 +267,24 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
     </tr>
 </table>
 
+## AnyChart Qlik Demo Application
+AnyChart Qlik Demo Application is a [anychart-qlik-demo-application.qvf](https://static.anychart.com/cdn/images/qlik-screens/anychart-qlik-demo-application.qvf) file which contains several sheets with all chart types available in AnyChart Qlik Extension. This Demo Applications files allows you to learn all the power of AnyChart Charts in combintation with Qlik Data Analytics Platform.
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/qvf_1.jpg?v=1" alt="AnyChart Qlik Demo Application, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/qvf_2.jpg?v=1" alt="AnyChart Qlik Demo Application, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+
 
 ## Roadmap
 AnyChart offers best-in-class charting solution and we are working hard on adding new features. Here is the list of new features that we have already included in our release schedule. We have a very aggressive roadmap and we are ready to listen to you - our customers - about new improvements. We would appreciate any suggestions - please contact us with your ideas.
 
-### Version 2.2 - Dec 2017
-* Radar Chart
-* Polar Chart
-* Treemap Chart
-* New Chart Type Select Control
-* Qlik theme for Chart Editor 
+### Version 2.3 - Feb 2018
+* [Linear Gauges](https://www.anychart.com/products/anychart/gallery/Linear_Gauges/)
+* [Circular Gauges](https://www.anychart.com/products/anychart/gallery/Circular_Gauges/) 
 
 ## Contacts
 
