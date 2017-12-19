@@ -272,8 +272,8 @@ AnyChart Qlik Demo Application is a [anychart-qlik-demo-application.qvf](https:/
 
 <table>
     <tr>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/qvf_1.jpg?v=1" alt="AnyChart Qlik Demo Application, 1 - AnyChart Extension for Qlik Sense"></td>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/qvf_2.jpg?v=1" alt="AnyChart Qlik Demo Application, 2 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/qvf_1.png?v=1" alt="AnyChart Qlik Demo Application, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/qvf_2.png?v=1" alt="AnyChart Qlik Demo Application, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
 
