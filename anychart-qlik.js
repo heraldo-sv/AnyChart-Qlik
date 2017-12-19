@@ -24,7 +24,7 @@ define([
       var editor = new chartEditor();
       var hCubeWidth = config.settings.maxDimensions + config.settings.maxMeasures;
       var hCubeInitialHeight = Math.floor(10000 / Math.min(10000, hCubeWidth));
-      var interactionState = null;
+      var documentURI = null;
 
       return {
         initialProperties: {
@@ -53,10 +53,10 @@ define([
 
           if (dataAdapter.loadData(this, $element, layout, hCubeWidth)) {
 
-            //if (this.options.interactionState != interactionState) {
+            if (documentURI != document.documentURI) {
               anychart['graphics']['updateReferences']();
-              interactionState = this.options.interactionState;
-            // }
+              documentURI = document.documentURI;
+            }
 
             if (layout.anychart.chartEditor == "true" && this.options.interactionState == 2) {
               editor.openEditor(this, layout);
