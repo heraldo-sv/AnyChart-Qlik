@@ -53,10 +53,10 @@ define([
 
           if (dataAdapter.loadData(this, $element, layout, hCubeWidth)) {
 
-            if (this.options.interactionState != interactionState) {
+            //if (this.options.interactionState != interactionState) {
               anychart['graphics']['updateReferences']();
               interactionState = this.options.interactionState;
-            }
+            // }
 
             if (layout.anychart.chartEditor == "true" && this.options.interactionState == 2) {
               editor.openEditor(this, layout);
