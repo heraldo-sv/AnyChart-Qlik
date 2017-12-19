@@ -89,7 +89,7 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 <table>
     <tr>
         <td><img src="http://static.anychart.com/cdn/images/qlik-screens/pie_1.jpg" alt="Pie/Donut Chart, 1 - AnyChart Extension for Qlik Sense"></td>
-        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/pie_2.jpg" alt="Pie/Donut Chart, 2 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/donut_1.jpg" alt="Pie/Donut Chart, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
 
@@ -109,6 +109,45 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
     <tr>
         <td><img src="http://static.anychart.com/cdn/images/qlik-screens/box_1.jpg" alt="Box Chart, 1 - AnyChart Extension for Qlik Sense"></td>
         <td><img src="http://static.anychart.com/cdn/images/qlik-screens/box_2.jpg" alt="Box Chart, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+
+### Waterfall Chart
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/waterfall_1.png" alt="Waterfall Chart, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/waterfall_2.png" alt="Waterfall Chart, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+
+### Mekko Chart (Marimekko Chart)
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/mekko_1.png" alt="Mekko Chart (Marimekko Chart), 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/mekko_2.png" alt="Mekko Chart (Marimekko Chart), 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+### Barmekko Chart
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/barmekko_1.png" alt="Barmekko Chart, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/barmekko_2.png" alt="Barmekko Chart, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
+
+### Mosaic Chart
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/mosaic_1.png" alt="Mosaic Chart, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/mosaic_2.png" alt="Mosaic Chart, 2 - AnyChart Extension for Qlik Sense"></td>
     </tr>
 </table>
 
@@ -195,12 +234,12 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 ## Roadmap
 AnyChart offers best-in-class charting solution and we are working hard on adding new features. Here is the list of new features that we have already included in our release schedule. We have a very aggressive roadmap and we are ready to listen to you - our customers - about new improvements. We would appreciate any suggestions - please contact us with your ideas.
 
-### Version 2.1 - Nov 2017
-* Waterfall Chart
-* Mekko Chart
-* Tree Map Chart
+### Version 2.2 - Dec 2017
 * Radar Chart
 * Polar Chart
+* Treemap Chart
+* New Chart Type Select Control
+* Qlik theme for Chart Editor 
 
 ## Contacts
 
