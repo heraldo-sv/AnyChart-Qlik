@@ -7,7 +7,7 @@ define(["./../config", "./../js/data-adapter"],
            * 'chartId' : {'chart': Object, 'selected': integer[]}
            */
         };
-        
+
 
         this.buildChart = function(view, layout) {
           var code = layout.anychart.code;
@@ -44,6 +44,8 @@ define(["./../config", "./../js/data-adapter"],
             // Apply global settings
             chart['contextMenu'](false);
 
+            // chart['xAxis']()['labels']()['position']('normal');
+
             if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
               anychart['licenseKey'](config.credits.licenseKey);
 
@@ -71,50 +73,53 @@ define(["./../config", "./../js/data-adapter"],
             return null;
 
           // Qlik style interactivity initialization
-          chart['interactivity']()['selectionMode']('none');
+          var chartType = chart['getType']();
+          if (chartType !== 'stock' && chartType !== 'tree-map') {
+            chart['interactivity']()['selectionMode']('none');
 
-          _static[chartId]['pointClicked'] = false;
-          chart['listen']("mouseDown", function() {
-            if (!_static[chartId]['pointClicked']) {
-              chart['dispatchEvent']("pointMouseDown");
-            }
             _static[chartId]['pointClicked'] = false;
-          });
+            chart['listen']("mouseDown", function() {
+              if (!_static[chartId]['pointClicked']) {
+                chart['dispatchEvent']("pointMouseDown");
+              }
+              _static[chartId]['pointClicked'] = false;
+            });
 
-          chart['listen']("pointMouseDown", function(evt) {
-            evt.stopPropagation();
-            evt.preventDefault();
+            chart['listen']("pointMouseDown", function(evt) {
+              evt.stopPropagation();
+              evt.preventDefault();
 
-            if (evt.pointIndex != undefined) {
-              _static[chartId]['pointClicked'] = true;
+              if (evt.pointIndex != undefined) {
+                _static[chartId]['pointClicked'] = true;
 
-              if (layout.anychart.field) {
-                for (var i = 0; i < preparedData.dimensions.length; i++) {
-                  if (preparedData.dimensions[i]['id'] == layout.anychart.field) {
-                    var qElemNumber = preparedData.dimensions[i]['indexes'][evt.pointIndex];
-                    if (typeof qElemNumber == 'number') {
+                if (layout.anychart.field) {
+                  for (var i = 0; i < preparedData.dimensions.length; i++) {
+                    if (preparedData.dimensions[i]['id'] == layout.anychart.field) {
+                      var qElemNumber = preparedData.dimensions[i]['indexes'][evt.pointIndex];
+                      if (typeof qElemNumber == 'number') {
                         view.selectValues(i, [qElemNumber], true);
+                      }
+                      break;
                     }
-                    break;
                   }
+                }
+
+                var index = _static[chartId]['selected'].indexOf(evt.pointIndex);
+                if (index == -1) {
+                  _static[chartId]['selected'].push(evt.pointIndex);
+                } else {
+                  _static[chartId]['selected'].splice(index, 1);
                 }
               }
 
-              var index = _static[chartId]['selected'].indexOf(evt.pointIndex);
-              if (index == -1) {
-                _static[chartId]['selected'].push(evt.pointIndex);
-              } else {
-                _static[chartId]['selected'].splice(index, 1);
-              }
-            }
+              self.updateChartSelections(chartId);
+            });
 
-            self.updateChartSelections(chartId);
-          });
-
-          view.clearSelectedValues = function() {
-            _static[chartId]['selected'] = [];
-            self.updateChartSelections(chartId);
-          };
+            view.clearSelectedValues = function() {
+              _static[chartId]['selected'] = [];
+              self.updateChartSelections(chartId);
+            };
+          }
 
           // debug
           //window['chart'] = chart;
@@ -142,9 +147,6 @@ define(["./../config", "./../js/data-adapter"],
                 for (var i = 0; i < selected.length; i++) {
                   chart['explodeSlice'](selected[i]);
                 }
-                break;
-              case 'stock':
-                // do nothing - stock chart has no interactivity for now
                 break;
               default:
                 // console.log("Unprocessed chart type " + chartType + " in updateChartSelections()");
