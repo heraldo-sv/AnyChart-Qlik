@@ -8,8 +8,7 @@ define(["./../config", "./../js/data-adapter"],
            */
         };
 
-
-        this.buildChart = function(view, layout) {
+        this.buildChart = function(view, layout, options) {
           var code = layout.anychart.code;
           if (!code) return null;
 
@@ -21,14 +20,14 @@ define(["./../config", "./../js/data-adapter"],
 
           _static[chartId]['selected'] = [];
 
-          if (_static[chartId]['chart'] && typeof _static[chartId]['chart']['dispose'] == 'function') {
+          if (_static[chartId]['chart'] && typeof _static[chartId]['chart']['dispose'] === 'function') {
             anychart['utils']['hideTooltips']();
             _static[chartId]['chart'].dispose();
           }
 
           // Building chart from chart editor's builded code
           var codeSplit = code.split('var rawData=[/*Add your data here*/];'); // todo: do better
-          if (codeSplit.length == 2) {
+          if (codeSplit.length === 2) {
 
             // Chart creation code
             var code1 = '(function(){' + codeSplit[0] + 'return chart;})();';
@@ -66,7 +65,7 @@ define(["./../config", "./../js/data-adapter"],
             // Apply editor's settings
             var code2func = eval(code2);
 
-            var preparedData = dataAdapter.prepareData(view, layout);
+            var preparedData = dataAdapter.prepareData(view, layout, options);
             code2func.apply(null, [chart, preparedData.data]);
 
           } else
@@ -89,14 +88,14 @@ define(["./../config", "./../js/data-adapter"],
               evt.stopPropagation();
               evt.preventDefault();
 
-              if (evt.pointIndex != undefined) {
+              if (evt.pointIndex !== undefined) {
                 _static[chartId]['pointClicked'] = true;
 
                 if (layout.anychart.field) {
                   for (var i = 0; i < preparedData.dimensions.length; i++) {
-                    if (preparedData.dimensions[i]['id'] == layout.anychart.field) {
+                    if (preparedData.dimensions[i]['id'] === layout.anychart.field) {
                       var qElemNumber = preparedData.dimensions[i]['indexes'][evt.pointIndex];
-                      if (typeof qElemNumber == 'number') {
+                      if (typeof qElemNumber === 'number') {
                         view.selectValues(i, [qElemNumber], true);
                       }
                       break;
@@ -105,7 +104,7 @@ define(["./../config", "./../js/data-adapter"],
                 }
 
                 var index = _static[chartId]['selected'].indexOf(evt.pointIndex);
-                if (index == -1) {
+                if (index === -1) {
                   _static[chartId]['selected'].push(evt.pointIndex);
                 } else {
                   _static[chartId]['selected'].splice(index, 1);
@@ -131,12 +130,12 @@ define(["./../config", "./../js/data-adapter"],
           var chart = _static[chartId]['chart'];
           var selected = _static[chartId]['selected'];
 
-          if (typeof chart['getSeriesCount'] == 'function') {
+          if (typeof chart['getSeriesCount'] === 'function') {
             for (var s = 0; s < chart['getSeriesCount'](); s++) {
               chart['getSeriesAt'](s)['select'](selected);
             }
 
-          } else if (typeof chart['select'] == 'function') {
+          } else if (typeof chart['select'] === 'function') {
             chart['select'](selected);
 
           } else {

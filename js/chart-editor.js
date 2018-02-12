@@ -4,8 +4,9 @@ define(['./../config', './../js/data-adapter'],
 
         var editor = null;
         var complete = false;
+        var tokens;
 
-        this.openEditor = function(view, layout) {
+        this.openEditor = function(view, layout, options) {
           if (!editor) {
             editor = anychart['ui']['editor']();
             editor['steps']()['prepareData'](false);
@@ -13,11 +14,9 @@ define(['./../config', './../js/data-adapter'],
             editor['steps']()['visualAppearance']()['contextMenu'](false);
             complete = false;
 
-            var res = dataAdapter.prepareData(view, layout);
-            var data = res.data;
-            var serializedModel = layout.anychart.model;
-
-            editor['data']({'data': data, 'setId': 'qlikData', 'fieldNames': res.fieldNames});
+            var res = dataAdapter.prepareData(view, layout, options);
+            editor['data']({'setId': 'qlikData', 'data': res.data, 'fieldNames': res.fieldNames});
+            tokens = res.tokens;
 
             var defaults = [{'key': [['chart'], ['settings'], 'contextMenu().enabled()'], 'value': false}];
             if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
@@ -39,10 +38,10 @@ define(['./../config', './../js/data-adapter'],
             // defaults.push({'key': [['chart'], ['settings'], 'xAxis().labels().position()'], 'value': 'normal'});
 
             editor['setDefaults'](defaults);
-            editor['deserializeModel'](serializedModel);
+            editor['deserializeModel'](layout.anychart.model);
             editor['visible'](true);
 
-            editor.listenOnce('complete', function(evt) {
+            editor.listenOnce('complete', function() {
               complete = true;
 
               var code = editor['getChartAsJsCode']({
@@ -56,7 +55,7 @@ define(['./../config', './../js/data-adapter'],
             });
 
             editor.listen('close', function(evt) {
-              if (!complete && evt.target == editor)
+              if (!complete && evt.target === editor)
                 closeEditor(view, null);
             });
           }
@@ -78,6 +77,7 @@ define(['./../config', './../js/data-adapter'],
                 reply.anychart.code = code;
                 reply.anychart.model = serializedModel;
                 reply.anychart.field = field;
+                reply.anychart.tokens = JSON.stringify(tokens);
               }
               view.backendApi.setProperties(reply);
             });

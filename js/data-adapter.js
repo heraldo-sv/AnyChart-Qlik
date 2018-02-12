@@ -30,24 +30,46 @@ define([], function() {
     return true;
   };
 
-  self.prepareData = function(view, layout) {
+  self.prepareData = function(view, layout, options) {
     var result = {data: [], dimensions: [], fieldNames: {}};
     var hc = layout.qHyperCube;
     var fieldKeys = [];
     var i;
-
+    var tokens;
+    
+    if (options.tokens) {
+      tokens = JSON.parse(options.tokens);
+    } else {
+      tokens = {
+        dimCount: 0,
+        measCount: 0
+      };
+    }
+    
     for (i = 0; i < hc.qDimensionInfo.length; i++) {
-      var dimId = "dim_" + hc.qDimensionInfo[i].cId;
-      fieldKeys.push(dimId);
-      result.dimensions.push({'number': i, 'id': dimId, 'indexes': []});
-      result.fieldNames[dimId] = hc.qDimensionInfo[i]['qFallbackTitle'];
+      var dimestionId = tokens[hc.qDimensionInfo[i].cId];
+      if (!dimestionId){
+        dimestionId = tokens[hc.qDimensionInfo[i].cId] = "dimension" + tokens.dimCount;
+        tokens.dimCount++;
+      }
+
+      fieldKeys.push(dimestionId);
+      result.dimensions.push({'number': i, 'id': dimestionId, 'indexes': []});
+      result.fieldNames[dimestionId] = hc.qDimensionInfo[i]['qFallbackTitle'];
     }
 
     for (i = 0; i < hc.qMeasureInfo.length; i++) {
-      var measId = "meas_" + hc.qMeasureInfo[i].cId;
-      fieldKeys.push(measId);
-      result.fieldNames[measId] = hc.qMeasureInfo[i]['qFallbackTitle'];
+      var measureId = tokens[hc.qMeasureInfo[i].cId];
+      if (!measureId){
+        measureId = tokens[hc.qMeasureInfo[i].cId] = "measure" + tokens.measCount;
+        tokens.measCount++;
+      }
+
+      fieldKeys.push(measureId);
+      result.fieldNames[measureId] = hc.qMeasureInfo[i]['qFallbackTitle'];
     }
+
+    result.tokens = tokens;
 
     view.backendApi.eachDataRow(function(index, row) {
       //if (index == 3) console.log("Row:", index, row);
@@ -55,7 +77,7 @@ define([], function() {
 
       for (var j = 0; j < row.length; j++) {
         var value;
-        if (row[j]['qState'] == 'O' || row[j]['qIsOtherCell']) {
+        if (row[j]['qState'] === 'O' || row[j]['qIsOtherCell']) {
           // dimension
           value = row[j]['qText'];
           result.dimensions[j]['indexes'].push(row[j]["qElemNumber"]);
@@ -64,7 +86,7 @@ define([], function() {
           // measure
           value = row[j]['qIsNull'] ?
               null :
-              row[j]['qNum'] == 'NaN' ? row[j]['qText'] : row[j]['qNum'];
+              row[j]['qNum'] === 'NaN' ? row[j]['qText'] : row[j]['qNum'];
         }
 
         processedRow[fieldKeys[j]] = value;
@@ -73,6 +95,7 @@ define([], function() {
       result.data.push(processedRow);
     });
 
+    // console.log(result.data);
     return result;
   };
 
