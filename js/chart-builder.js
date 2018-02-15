@@ -26,7 +26,7 @@ define(["./../config", "./../js/data-adapter"],
           }
 
           // Building chart from chart editor's builded code
-          var codeSplit = code.split('var rawData=[/*Add your data here*/];'); // todo: do better
+          var codeSplit = code.split(/\/\*=rawData.+rawData=\*\//);
           if (codeSplit.length === 2) {
 
             // Chart creation code
@@ -42,8 +42,6 @@ define(["./../config", "./../js/data-adapter"],
 
             // Apply global settings
             chart['contextMenu'](false);
-
-            // chart['xAxis']()['labels']()['position']('normal');
 
             if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
               anychart['licenseKey'](config.credits.licenseKey);
@@ -62,10 +60,28 @@ define(["./../config", "./../js/data-adapter"],
                 chartCredits['logoSrc'](config.credits.logoSrc);
             }
 
+            var preparedData = dataAdapter.prepareData(view, layout, options);
+
+            // Process locked series names
+            var editorModel = JSON.parse(options.model);
+            var lockSeriesName = editorModel['editorSettings'] && editorModel['editorSettings']['lockSeriesName'];
+
+            if (lockSeriesName) {
+              for (var k in lockSeriesName) {
+
+                if (lockSeriesName[k]) {
+                  var getSeries = k.replace('.name()', '');
+                  var seriesName = preparedData.fieldNames[lockSeriesName[k]];
+                  var setting = 'if(chart.' + getSeries + ')chart.' + getSeries + '.name(\'' + seriesName + '\');';
+
+                  var marker = '/*seriesNames=*/';
+                  code2 = code2.replace(marker, setting + marker);
+                }
+              }
+            }
+
             // Apply editor's settings
             var code2func = eval(code2);
-
-            var preparedData = dataAdapter.prepareData(view, layout, options);
             code2func.apply(null, [chart, preparedData.data]);
 
           } else

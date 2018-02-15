@@ -47,6 +47,7 @@ define(['./../config', './../js/data-adapter'],
               var code = editor['getChartAsJsCode']({
                 'minify': true,
                 'addData': false,
+                'addMarkers': true,
                 'wrapper': '',
                 'container': ''
               });
