@@ -72,14 +72,17 @@ define([], function() {
     result.tokens = tokens;
 
     view.backendApi.eachDataRow(function(index, row) {
-      //if (index == 3) console.log("Row:", index, row);
+      // if (index === 3) console.log("Row:", index, row);
       var processedRow = {};
+      var groupedDimValue = '';
 
       for (var j = 0; j < row.length; j++) {
         var value;
         if (row[j]['qState'] === 'O' || row[j]['qIsOtherCell']) {
           // dimension
           value = row[j]['qText'];
+          groupedDimValue = j > 0 ? groupedDimValue + '_' + value : value;
+
           result.dimensions[j]['indexes'].push(row[j]["qElemNumber"]);
 
         } else {
@@ -90,6 +93,11 @@ define([], function() {
         }
 
         processedRow[fieldKeys[j]] = value;
+      }
+
+      if (result.dimensions.length > 1) {
+        // Grouped dimensions field
+        processedRow['dimensionGroup'] = groupedDimValue;
       }
 
       result.data.push(processedRow);

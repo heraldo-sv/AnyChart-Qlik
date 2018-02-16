@@ -108,14 +108,19 @@ define(["./../config", "./../js/data-adapter"],
                 _static[chartId]['pointClicked'] = true;
 
                 if (layout.anychart.field) {
+                  var dimIndex = -1;
                   for (var i = 0; i < preparedData.dimensions.length; i++) {
                     if (preparedData.dimensions[i]['id'] === layout.anychart.field) {
-                      var qElemNumber = preparedData.dimensions[i]['indexes'][evt.pointIndex];
-                      if (typeof qElemNumber === 'number') {
-                        view.selectValues(i, [qElemNumber], true);
-                      }
+                      dimIndex = i;
                       break;
                     }
+                  }
+
+                  dimIndex = dimIndex < 0 ? 0 : dimIndex;
+
+                  var qElemNumber = preparedData.dimensions[dimIndex]['indexes'][evt.pointIndex];
+                  if (typeof qElemNumber === 'number') {
+                    view.selectValues(dimIndex, [qElemNumber], true);
                   }
                 }
 
