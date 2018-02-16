@@ -68,10 +68,10 @@ define(["./../config", "./../js/data-adapter"],
 
             if (lockSeriesName) {
               for (var k in lockSeriesName) {
-
-                if (lockSeriesName[k]) {
+                var dataKey = lockSeriesName[k];
+                if (dataKey && preparedData.fieldNames[dataKey]) {
                   var getSeries = k.replace('.name()', '');
-                  var seriesName = preparedData.fieldNames[lockSeriesName[k]];
+                  var seriesName = preparedData.fieldNames[dataKey];
                   var setting = 'if(chart.' + getSeries + ')chart.' + getSeries + '.name(\'' + seriesName + '\');';
 
                   var marker = '/*seriesNames=*/';
