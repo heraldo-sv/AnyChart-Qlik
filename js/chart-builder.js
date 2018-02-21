@@ -89,7 +89,7 @@ define(["./../config", "./../js/data-adapter"],
 
           // Qlik style interactivity initialization
           var chartType = chart['getType']();
-          if (chartType !== 'stock' && chartType !== 'tree-map') {
+          if (['stock', 'tree-map', 'circular-gauge', 'linear-gauge'].indexOf(chartType) === -1) {
             chart['interactivity']()['selectionMode']('none');
 
             _static[chartId]['pointClicked'] = false;
