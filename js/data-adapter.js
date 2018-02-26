@@ -78,10 +78,10 @@ define([], function() {
 
       for (var j = 0; j < row.length; j++) {
         var value;
-        if (row[j]['qState'] === 'O' || row[j]['qIsOtherCell']) {
+        if (row[j]['qState'] === 'O' || row[j]['qState'] === 'S' || row[j]['qIsOtherCell']) {
           // dimension
           value = row[j]['qText'];
-          groupedDimValue = j > 0 ? groupedDimValue + '_' + value : value;
+          groupedDimValue = groupedDimValue ? groupedDimValue + '_' + value : value;
 
           result.dimensions[j]['indexes'].push(row[j]["qElemNumber"]);
 
