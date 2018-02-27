@@ -49,6 +49,12 @@ define(["./../config"], function(config) {
         ref: "anychart.field",
         type: "string",
         show: false
+      },
+      tokens: {
+        ref: "anychart.tokens",
+        type: "string",
+        defaultValue: "",
+        show: false
       }
     }
   };

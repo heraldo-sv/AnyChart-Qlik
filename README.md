@@ -228,6 +228,15 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
     </tr>
 </table>
 
+### Linear and Circular Gauges 
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/gauges_1.png" alt="Linear and Circular Gauges, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/gauges_2.png" alt="Linear and Circular Gauges, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
 
 ## Features
 
@@ -282,9 +291,11 @@ AnyChart Qlik Demo Application is a [anychart-qlik-demo-application.qvf](https:/
 ## Roadmap
 AnyChart offers best-in-class charting solution and we are working hard on adding new features. Here is the list of new features that we have already included in our release schedule. We have a very aggressive roadmap and we are ready to listen to you - our customers - about new improvements. We would appreciate any suggestions - please contact us with your ideas.
 
-### Version 2.3 - Feb 2018
-* [Linear Gauges](https://www.anychart.com/products/anychart/gallery/Linear_Gauges/)
-* [Circular Gauges](https://www.anychart.com/products/anychart/gallery/Circular_Gauges/) 
+### Version 2.4 - Apr 2018
+* Multiple scales for axes and series
+* [Localization Support](https://docs.anychart.com/Common_Settings/Localization)
+* Falling/Rising coloring controls for Waterfall and OHLC series
+* Labels ratation settigns
 
 ## Contacts
 
