@@ -295,7 +295,7 @@ AnyChart offers best-in-class charting solution and we are working hard on addin
 * Multiple scales for axes and series
 * [Localization Support](https://docs.anychart.com/Common_Settings/Localization)
 * Falling/Rising coloring controls for Waterfall and OHLC series
-* Labels ratation settigns
+* Labels rotation settings
 
 ## Contacts
 
