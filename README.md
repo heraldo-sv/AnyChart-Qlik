@@ -228,6 +228,15 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
     </tr>
 </table>
 
+### Linear and Circular Gauges 
+
+<table>
+    <tr>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/gauges_1.png" alt="Linear and Circular Gauges, 1 - AnyChart Extension for Qlik Sense"></td>
+        <td><img src="http://static.anychart.com/cdn/images/qlik-screens/gauges_2.png" alt="Linear and Circular Gauges, 2 - AnyChart Extension for Qlik Sense"></td>
+    </tr>
+</table>
+
 
 ## Features
 
