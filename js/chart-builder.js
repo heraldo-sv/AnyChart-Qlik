@@ -44,8 +44,6 @@ define(["./../config", "./../js/data-adapter"],
             chart['contextMenu'](false);
 
             if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
-              anychart['licenseKey'](config.credits.licenseKey);
-
               var chartCredits = chart['credits']();
               if (typeof config.credits.enabled === 'boolean')
                 chartCredits['enabled'](config.credits.enabled);

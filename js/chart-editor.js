@@ -8,7 +8,7 @@ define(['./../config', './../js/data-adapter'],
 
         this.openEditor = function(view, layout, options) {
           if (!editor) {
-            editor = anychart['ui']['editor']();
+            editor = anychart['editor']();
             editor['steps']()['prepareData'](false);
             editor['renderAsDialog']();
             editor['steps']()['visualAppearance']()['contextMenu'](false);

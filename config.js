@@ -12,6 +12,16 @@ define([], function() {
       licenseKey: ""
     },
 
+    localization: {
+      //inputLocale: "",
+      //outputLocale: "",
+      // inputDateTimeFormat: "",
+      //outputDateFormat: "",
+      // outputDateTimeFormat: "",
+      // outputTimeFormat: "",
+      // outputTimezone: ""
+    },
+
     settings: {
       // These values affect hypercube height (num rows in data page).
       // maxDimensions * maxMeasures should be less than 10000
