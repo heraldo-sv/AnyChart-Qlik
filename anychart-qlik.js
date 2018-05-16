@@ -46,8 +46,7 @@ define([
         definition: pDef,
 
         support: {
-          snapshot: true,
-          export: true
+          snapshot: true
         },
 
         paint: function($element, layout) {
