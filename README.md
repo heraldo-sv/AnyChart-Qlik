@@ -277,7 +277,7 @@ _Note: As far as AnyChart Qlik Extension is still at the development stage, not 
 </table>
 
 ## AnyChart Qlik Demo Application
-AnyChart Qlik Demo Application is a [anychart-qlik-demo-application.qvf](https://static.anychart.com/cdn/images/qlik-screens/anychart-qlik-demo-application.qvf) file which contains several sheets with all chart types available in AnyChart Qlik Extension. This Demo Applications files allows you to learn all the power of AnyChart Charts in combintation with Qlik Data Analytics Platform.
+AnyChart Qlik Demo Application is a [anychart-qlik-demo-application.qvf](https://github.com/AnyChart/AnyChart-Qlik/raw/master/examples/anychart-qlik-demo-application.qvf) file which contains several sheets with all chart types available in AnyChart Qlik Extension. This Demo Applications files allows you to learn all the power of AnyChart Charts in combintation with Qlik Data Analytics Platform.
 
 <table>
     <tr>
@@ -291,11 +291,9 @@ AnyChart Qlik Demo Application is a [anychart-qlik-demo-application.qvf](https:/
 ## Roadmap
 AnyChart offers best-in-class charting solution and we are working hard on adding new features. Here is the list of new features that we have already included in our release schedule. We have a very aggressive roadmap and we are ready to listen to you - our customers - about new improvements. We would appreciate any suggestions - please contact us with your ideas.
 
-### Version 2.4 - Apr 2018
-* Multiple scales for axes and series
-* [Localization Support](https://docs.anychart.com/Common_Settings/Localization)
-* Falling/Rising coloring controls for Waterfall and OHLC series
-* Labels rotation settings
+### Version 2.5 (ETA Sep 2018):
+* Gantt Chart
+* Annotations and drawing tools
 
 ## Contacts
 

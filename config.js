@@ -13,10 +13,10 @@ define([], function() {
     },
 
     localization: {
-      //inputLocale: "",
-      //outputLocale: "",
+      // inputLocale: "",
+      // outputLocale: "",
       // inputDateTimeFormat: "",
-      //outputDateFormat: "",
+      // outputDateFormat: "",
       // outputDateTimeFormat: "",
       // outputTimeFormat: "",
       // outputTimezone: ""
