@@ -3,7 +3,7 @@ define([
       "./js/properties",
       "./config",
 
-      "js/qlik",
+      "qlik",
       './js/data-adapter',
       "./js/chart-builder",
       "./js/chart-editor",

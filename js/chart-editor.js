@@ -9,9 +9,9 @@ define(['./../config', './../js/data-adapter'],
         this.openEditor = function(view, layout, options) {
           if (!editor) {
             editor = anychart['editor']();
-            editor['step'](0)['enabled'](false);
-            editor['step'](3)['enabled'](false);
-            editor['step'](3)['tab']('contextMenu', false);
+            editor['step']('data')['enabled'](false);
+            editor['step']('export')['enabled'](false);
+            editor['step']('appearance')['tab']('contextMenu', false);
 
             var res = dataAdapter.prepareData(view, layout, options);
             editor['data']({'setId': 'qlikData', 'data': res.data, 'fieldNames': res.fieldNames});
