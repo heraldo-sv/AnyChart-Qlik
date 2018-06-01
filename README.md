@@ -8,6 +8,8 @@ AnyChart JavaScript Visualization Library [extension](https://help.qlik.com/en-U
 
 Qlik Sense is a self-service data visualization and discovery application designed for all business users whether, individuals, groups, or organizations. With Qlik Sense you can analyze data and make data discoveries on your own. You can share knowledge and analyze data in groups and across organizations. Qlik Sense lets you ask and answer your own questions and follow your own paths to insight, as well as enabling you and your colleagues to reach decisions collaboratively.
 
+You can find AnyChart Qlik Extension on [AnyChart Extension Qlik Branch page](http://branch.qlik.com/#!/project/58cf59cd61d353a813f4a37e).
+
 ## Download and install
 
 Download [AnyChart Qlick Sense Extension](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip).
