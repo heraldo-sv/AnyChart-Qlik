@@ -25,8 +25,7 @@ Then, in the action bar at the bottom of the screen, click “Import”
 Click “Choose File” in the popup and navigate to the folder that was downloaded, select it, then click “Import”.
 
 ## Chart Editor
-Chart Editor is an out-of-the-box chart generator and editor integrated with AnyChart Qlik Extension. Chart Editor has an intuitive user interface and provides access to more than [70 chart types](https://www.anychart.com/features/#chart-types) including Gantt Charts, Stock Charts, and Geo Maps.  
-To learn more, visit [Chart Editor](https://www.anychart.com/products/chart_editor/) product page.
+Chart Editor is an out-of-the-box chart generator and editor integrated with AnyChart Qlik Extension. Chart Editor has an intuitive user interface and provides access to more than [70 chart types](https://www.anychart.com/features/#chart-types) including Gantt Charts, Stock Charts, and Geo Maps.
  
 <table>
     <tr>
