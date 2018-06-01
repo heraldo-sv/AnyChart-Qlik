@@ -3,7 +3,7 @@ define([
       "./js/properties",
       "./config",
 
-      "js/qlik",
+      "qlik",
       './js/data-adapter',
       "./js/chart-builder",
       "./js/chart-editor",
@@ -11,8 +11,10 @@ define([
 
       "./lib/themes-combined",
       "./lib/anychart-bundle.min",
+      "./lib/chart-editor.min",
 
       "css!./lib/anychart-ui.min.css",
+      "css!./lib/chart-editor.min.css",
       "css!./lib/fonts.css",
       "css!./style.css"
     ],
@@ -44,24 +46,54 @@ define([
         definition: pDef,
 
         support: {
-          snapshot: true,
-          export: true
+          snapshot: true
         },
 
         paint: function($element, layout) {
           $element.html('');
 
-          if (dataAdapter.loadData(this, $element, layout, hCubeWidth)) {
+          var self = this;
+          var inputLocale = typeof config.localization.inputLocale === 'string' && config.localization.inputLocale;
+          var outputLocale = typeof config.localization.outputLocale === 'string' && config.localization.outputLocale;
+
+          if (inputLocale && !anychart['format']['locales'][inputLocale] ||
+              outputLocale && !anychart['format']['locales'][outputLocale]) {
+            // Loading locales
+            var localeUrl;
+            if (inputLocale && !anychart['format']['locales'][inputLocale]) {
+              localeUrl = '//cdn.anychart.com/releases/v8/locales/' + inputLocale + '.js';
+              require([localeUrl], function(){
+                self.paint($element, layout);
+              });
+            } else if (outputLocale && !anychart['format']['locales'][outputLocale]) {
+              localeUrl = '//cdn.anychart.com/releases/v8/locales/' + outputLocale + '.js';
+              require([localeUrl], function(){
+                self.paint($element, layout);
+              });
+            }
+
+          } else if (dataAdapter.loadData(self, $element, layout, hCubeWidth)) {
 
             if (documentURI !== document.documentURI) {
               anychart['graphics']['updateReferences']();
               documentURI = document.documentURI;
             }
 
-            var view = this;
+            var view = self;
 
             this.backendApi.getProperties().then(function(reply) {
               var options = reply.anychart;
+
+              // Applying globals
+              if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
+                anychart['licenseKey'](config.credits.licenseKey);
+              }
+
+              for (var l in config.localization) {
+                if (typeof anychart['format'][l] === 'function') {
+                  anychart['format'][l](String(config.localization[l]));
+                }
+              }
 
               if (layout.anychart.chartEditor === "true" && view.options.interactionState === 2) {
                 editor.openEditor(view, layout, options);
@@ -93,7 +125,7 @@ define([
             });
 
           } else {
-            //console.log("Load next data page");
+            // Load next data page
           }
 
           return qlik.Promise.resolve();

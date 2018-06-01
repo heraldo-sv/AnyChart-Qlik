@@ -8,11 +8,10 @@ define(['./../config', './../js/data-adapter'],
 
         this.openEditor = function(view, layout, options) {
           if (!editor) {
-            editor = anychart['ui']['editor']();
-            editor['steps']()['prepareData'](false);
-            editor['renderAsDialog']();
-            editor['steps']()['visualAppearance']()['contextMenu'](false);
-            complete = false;
+            editor = anychart['editor']();
+            editor['step']('data')['enabled'](false);
+            editor['step']('export')['enabled'](false);
+            editor['step']('appearance')['tab']('contextMenu', false);
 
             var res = dataAdapter.prepareData(view, layout, options);
             editor['data']({'setId': 'qlikData', 'data': res.data, 'fieldNames': res.fieldNames});
@@ -39,12 +38,16 @@ define(['./../config', './../js/data-adapter'],
 
             editor['setDefaults'](defaults);
             editor['deserializeModel'](layout.anychart.model);
-            editor['visible'](true);
 
-            editor.listenOnce('complete', function() {
+            editor['dialogRender']();
+            editor['dialogVisible'](true);
+
+            complete = false;
+
+            editor.listenOnce('editorComplete', function() {
               complete = true;
 
-              var code = editor['getChartAsJsCode']({
+              var code = editor['getJavascript']({
                 'minify': true,
                 'addData': false,
                 'addMarkers': true,
@@ -67,7 +70,7 @@ define(['./../config', './../js/data-adapter'],
             var serializedModel = editor['serializeModel']();
             var field = editor['getModel']()['getValue']([['dataSettings'], 'field']);
 
-            editor['visible'](false);
+            editor['dialogVisible'](false);
             editor['removeAllListeners']();
             editor['dispose']();
             editor = null;
