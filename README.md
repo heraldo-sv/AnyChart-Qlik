@@ -8,6 +8,8 @@ AnyChart JavaScript Visualization Library [extension](https://help.qlik.com/en-U
 
 Qlik Sense is a self-service data visualization and discovery application designed for all business users whether, individuals, groups, or organizations. With Qlik Sense you can analyze data and make data discoveries on your own. You can share knowledge and analyze data in groups and across organizations. Qlik Sense lets you ask and answer your own questions and follow your own paths to insight, as well as enabling you and your colleagues to reach decisions collaboratively.
 
+You can find AnyChart Qlik Extension on [AnyChart Extension Qlik Branch page](http://branch.qlik.com/#!/project/58cf59cd61d353a813f4a37e).
+
 ## Download and install
 
 Download [AnyChart Qlick Sense Extension](https://github.com/AnyChart/AnyChart-Qlik/archive/master.zip).
@@ -25,8 +27,7 @@ Then, in the action bar at the bottom of the screen, click “Import”
 Click “Choose File” in the popup and navigate to the folder that was downloaded, select it, then click “Import”.
 
 ## Chart Editor
-Chart Editor is an out-of-the-box chart generator and editor integrated with AnyChart Qlik Extension. Chart Editor has an intuitive user interface and provides access to more than [70 chart types](https://www.anychart.com/features/#chart-types) including Gantt Charts, Stock Charts, and Geo Maps.  
-To learn more, visit [Chart Editor](https://www.anychart.com/products/chart_editor/) product page.
+Chart Editor is an out-of-the-box chart generator and editor integrated with AnyChart Qlik Extension. Chart Editor has an intuitive user interface and provides access to more than [70 chart types](https://www.anychart.com/features/#chart-types) including Gantt Charts, Stock Charts, and Geo Maps.
  
 <table>
     <tr>
