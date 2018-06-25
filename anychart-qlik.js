@@ -46,13 +46,15 @@ define([
         definition: pDef,
 
         support: {
-          snapshot: true
+          snapshot: true,
+          export: true,
+          exportData: true
         },
 
         paint: function($element, layout) {
           $element.html('');
 
-          var self = this;
+          var view = this;
           var inputLocale = typeof config.localization.inputLocale === 'string' && config.localization.inputLocale;
           var outputLocale = typeof config.localization.outputLocale === 'string' && config.localization.outputLocale;
 
@@ -62,67 +64,63 @@ define([
             var localeUrl;
             if (inputLocale && !anychart['format']['locales'][inputLocale]) {
               localeUrl = '//cdn.anychart.com/releases/v8/locales/' + inputLocale + '.js';
-              require([localeUrl], function(){
-                self.paint($element, layout);
+              require([localeUrl], function() {
+                view.paint($element, layout);
               });
             } else if (outputLocale && !anychart['format']['locales'][outputLocale]) {
               localeUrl = '//cdn.anychart.com/releases/v8/locales/' + outputLocale + '.js';
-              require([localeUrl], function(){
-                self.paint($element, layout);
+              require([localeUrl], function() {
+                view.paint($element, layout);
               });
             }
 
-          } else if (dataAdapter.loadData(self, $element, layout, hCubeWidth)) {
+          } else if (dataAdapter.loadData(view, $element, layout, hCubeWidth)) {
 
             if (documentURI !== document.documentURI) {
               anychart['graphics']['updateReferences']();
               documentURI = document.documentURI;
             }
 
-            var view = self;
+            // Applying globals
+            if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
+              anychart['licenseKey'](config.credits.licenseKey);
+            }
 
-            this.backendApi.getProperties().then(function(reply) {
-              var options = reply.anychart;
-
-              // Applying globals
-              if (config.credits.licenseKey && typeof config.credits.licenseKey === 'string') {
-                anychart['licenseKey'](config.credits.licenseKey);
+            for (var l in config.localization) {
+              if (typeof anychart['format'][l] === 'function') {
+                anychart['format'][l](String(config.localization[l]));
               }
+            }
 
-              for (var l in config.localization) {
-                if (typeof anychart['format'][l] === 'function') {
-                  anychart['format'][l](String(config.localization[l]));
-                }
-              }
+            var options = layout.anychart;
 
-              if (layout.anychart.chartEditor === "true" && view.options.interactionState === 2) {
-                editor.openEditor(view, layout, options);
+            if (layout.anychart.chartEditor === "true" && view.options.interactionState === 2) {
+              editor.openEditor(view, layout, options);
 
+            } else {
+              var chart = builder.buildChart(view, layout, options);
+
+              if (chart) {
+                var containerId = "container_" + layout.qInfo.qId;
+                $element.append(
+                    $('<div/>')
+                        .attr({"id": containerId, "class": "chart-container"})
+                        .css({"width": "100%", "height": "100%"}));
+
+                chart['container'](containerId);
+                chart['draw']();
               } else {
-                var chart = builder.buildChart(view, layout, options);
+                var str = '<div class="intro-wrapper"><div class="intro">' +
+                    '<h1>Thank you for using AnyChart Qlik Sense Extension!</h1>' +
+                    'Now you can start configuring your chart.<br><br>' +
+                    'To run Chart Editor, please click on "Run Chart Editor" button in the Appearance Tab:' +
+                    '<div class="screenshot screenshot-1"></div><br>' +
+                    'Also you can use multiple measures and dimensions. Please use "Dimensions", "Measures" and "Sorting" tabs to setup your data:' +
+                    '<div class="screenshot screenshot-2"></div></div></div>';
 
-                if (chart) {
-                  var containerId = "container_" + layout.qInfo.qId;
-                  $element.append(
-                      $('<div/>')
-                          .attr({"id": containerId, "class": "chart-container"})
-                          .css({"width": "100%", "height": "100%"}));
-
-                  chart['container'](containerId);
-                  chart['draw']();
-                } else {
-                  var str = '<div class="intro-wrapper"><div class="intro">' +
-                      '<h1>Thank you for using AnyChart Qlik Sense Extension!</h1>' +
-                      'Now you can start configuring your chart.<br><br>' +
-                      'To run Chart Editor, please click on "Run Chart Editor" button in the Appearance Tab:' +
-                      '<div class="screenshot screenshot-1"></div><br>' +
-                      'Also you can use multiple measures and dimensions. Please use "Dimensions", "Measures" and "Sorting" tabs to setup your data:' +
-                      '<div class="screenshot screenshot-2"></div></div></div>';
-
-                  $element.html(str);
-                }
+                $element.html(str);
               }
-            });
+            }
 
           } else {
             // Load next data page
