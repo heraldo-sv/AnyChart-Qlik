@@ -37,7 +37,7 @@ define(['./../config', './../js/data-adapter'],
             // defaults.push({'key': [['chart'], ['settings'], 'xAxis().labels().position()'], 'value': 'normal'});
 
             editor['setDefaults'](defaults);
-            editor['deserializeModel'](layout.anychart.model);
+            editor['deserializeModel'](options.model);
 
             editor['dialogRender']();
             editor['dialogVisible'](true);

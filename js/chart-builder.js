@@ -9,7 +9,7 @@ define(["./../config", "./../js/data-adapter"],
         };
 
         this.buildChart = function(view, layout, options) {
-          var code = layout.anychart.code;
+          var code = options.code;
           if (!code) return null;
 
           var self = this;
@@ -105,10 +105,10 @@ define(["./../config", "./../js/data-adapter"],
               if (evt.pointIndex !== undefined) {
                 _static[chartId]['pointClicked'] = true;
 
-                if (layout.anychart.field) {
+                if (options.field) {
                   var dimIndex = -1;
                   for (var i = 0; i < preparedData.dimensions.length; i++) {
-                    if (preparedData.dimensions[i]['id'] === layout.anychart.field) {
+                    if (preparedData.dimensions[i]['id'] === options.field) {
                       dimIndex = i;
                       break;
                     }
