@@ -11,10 +11,10 @@ define([
 
       "./lib/themes-combined",
       "./lib/anychart-bundle.min",
-      "./lib/chart-editor.min",
+      "./lib/anychart-editor.min",
 
       "css!./lib/anychart-ui.min.css",
-      "css!./lib/chart-editor.min.css",
+      "css!./lib/anychart-editor.min.css",
       "css!./lib/fonts.css",
       "css!./style.css"
     ],
