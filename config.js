@@ -22,6 +22,8 @@ define([], function() {
       // outputTimezone: ""
     },
 
+    defaultTheme: "",
+
     settings: {
       // These values affect hypercube height (num rows in data page).
       // maxDimensions * maxMeasures should be less than 10000
