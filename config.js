@@ -22,7 +22,7 @@ define([], function() {
       // outputTimezone: ""
     },
 
-    defaultTheme: "",
+    defaultTheme: "customQlik",
 
     settings: {
       // These values affect hypercube height (num rows in data page).
