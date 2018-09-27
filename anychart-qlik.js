@@ -28,6 +28,17 @@ define([
       var hCubeInitialHeight = Math.floor(10000 / Math.min(10000, hCubeWidth));
       var documentURI = null;
 
+      //remove default Qlik font-family for SVG objects
+      for (var i = 0; i < document.styleSheets.length; i++) {
+        var sheet = document.styleSheets[i];
+        for (var j = 0; j < sheet.cssRules.length; j++) {
+          var rule = sheet.cssRules[j];
+          if (rule.style && rule.selectorText == ".qv-object *") {
+            rule.style.removeProperty("font-family");
+          }
+        }
+      }
+
       return {
         initialProperties: {
           version: 1.0,
